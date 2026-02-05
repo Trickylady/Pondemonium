@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://comuetut04glt"]
+
+[ext_resource type="Texture2D" uid="uid://blmd5gkcawb5y" path="res://images/game/tilebubble.png" id="1_ibsrb"]
+[ext_resource type="Texture2D" uid="uid://cjmpk22dok5f1" path="res://images/game/pop_1.png" id="2_ailre"]
+[ext_resource type="Texture2D" uid="uid://djn3sxnns8cxb" path="res://images/game/pop_2.png" id="3_hat6y"]
+[ext_resource type="Texture2D" uid="uid://cqv4ladamtbg5" path="res://images/game/pop_3.png" id="4_s28mo"]
+[ext_resource type="Texture2D" uid="uid://bsw0qmsmr2hj0" path="res://images/game/pop_4.png" id="5_uiryc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o2fme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ibsrb")
+}],
+"loop": true,
+"name": &"norm",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ailre")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hat6y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s28mo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uiryc")
+}],
+"loop": false,
+"name": &"pop",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ailre"]
+radius = 39.051247
+
+[node name="Tilebubble" type="StaticBody2D"]
+
+[node name="Tilebubble" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o2fme")
+animation = &"norm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_ailre")

@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://c66kdbg8bfcc"]
+
+[ext_resource type="Texture2D" uid="uid://cp0gm42axev73" path="res://images/game/frog_attack.png" id="1_c4w8v"]
+[ext_resource type="Texture2D" uid="uid://duxyax6kkdhsb" path="res://images/game/frog_horizontal_1.png" id="2_xwavj"]
+[ext_resource type="Texture2D" uid="uid://uuyx6rnnkjyc" path="res://images/game/kill_1.png" id="3_ipns3"]
+[ext_resource type="Texture2D" uid="uid://d1jgkveydtxfb" path="res://images/game/frog_horizontal_2.png" id="3_nenq2"]
+[ext_resource type="Texture2D" uid="uid://ds4wpj7ejgk52" path="res://images/game/kill_2.png" id="4_8qclf"]
+[ext_resource type="Texture2D" uid="uid://ceuanhaodlywa" path="res://images/game/frog_vertical_1.png" id="4_md484"]
+[ext_resource type="Texture2D" uid="uid://bh06l8kbikefn" path="res://images/game/frog_vertical_2.png" id="5_ipns3"]
+[ext_resource type="Texture2D" uid="uid://biu2vix8x3dmy" path="res://images/game/kill_3.png" id="5_w8i8w"]
+[ext_resource type="Texture2D" uid="uid://duf5uwo52mjyo" path="res://images/game/kill_4.png" id="6_otmr2"]
+[ext_resource type="Texture2D" uid="uid://tu62o7ingh74" path="res://images/game/gluebubble.png" id="10_8qclf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w8i8w"]
+radius = 29.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8qclf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_c4w8v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xwavj")
+}],
+"loop": false,
+"name": &"attackhor",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ipns3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8qclf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w8i8w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_otmr2")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xwavj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nenq2")
+}],
+"loop": true,
+"name": &"horizon",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_md484")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ipns3")
+}],
+"loop": true,
+"name": &"vertic",
+"speed": 7.0
+}]
+
+[node name="enemy" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.9999993, -1)
+shape = SubResource("CircleShape2D_w8i8w")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8qclf")
+animation = &"attackhor"
+
+[node name="glue" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("10_8qclf")

@@ -1,0 +1,120 @@
+[gd_scene load_steps=12 format=3 uid="uid://mttppave0n6l"]
+
+[ext_resource type="Theme" uid="uid://rc4laadkqcrj" path="res://themes/mainmenu.tres" id="1_h73c4"]
+[ext_resource type="Texture2D" uid="uid://c0b343mu8ql53" path="res://images/menu/menubg.png" id="1_wf3n4"]
+[ext_resource type="Texture2D" uid="uid://qtgwe2dj6xba" path="res://images/menu/logo1.png" id="2_h73c4"]
+[ext_resource type="Texture2D" uid="uid://bkv7vli30tbyd" path="res://images/menu/logo2.png" id="3_uui5l"]
+[ext_resource type="Texture2D" uid="uid://cbv18oxa2e1sj" path="res://images/menu/logo3.png" id="4_4hago"]
+[ext_resource type="Texture2D" uid="uid://mciqaamqyma" path="res://images/menu/logo4.png" id="5_gjjcl"]
+[ext_resource type="Texture2D" uid="uid://cuci5d7irjj5a" path="res://images/menu/logo5.png" id="6_kait0"]
+[ext_resource type="Texture2D" uid="uid://duhrdfnfnqf0f" path="res://images/menu/logo6.png" id="7_6pj40"]
+[ext_resource type="Texture2D" uid="uid://mhuy7qhm4khj" path="res://images/menu/inbetweenpiece.png" id="9_fsdjo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xwyuh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h73c4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uui5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4hago")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gjjcl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kait0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6pj40")
+}],
+"loop": true,
+"name": &"logomove",
+"speed": 5.0
+}]
+
+[sub_resource type="Theme" id="Theme_hn6ym"]
+
+[node name="Mainmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_h73c4")
+
+[node name="menubg" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_wf3n4")
+
+[node name="logogame" type="AnimatedSprite2D" parent="menubg"]
+position = Vector2(897, 351)
+sprite_frames = SubResource("SpriteFrames_xwyuh")
+animation = &"logomove"
+autoplay = "logomove"
+frame_progress = 0.58857733
+
+[node name="credittab" type="Control" parent="menubg"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="preferencetab" type="Control" parent="menubg"]
+anchors_preset = 0
+offset_left = 883.0
+offset_top = 481.0
+offset_right = 923.0
+offset_bottom = 521.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menubg"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.33200002
+anchor_bottom = 0.094000004
+offset_left = 589.0
+offset_top = 468.0
+offset_right = 882.55994
+offset_bottom = 488.47998
+
+[node name="playbutton" type="Button" parent="menubg/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_h73c4")
+text = "Play"
+
+[node name="Inbetweenpiece" type="TextureRect" parent="menubg/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_fsdjo")
+stretch_mode = 3
+
+[node name="preferencesbutton" type="Button" parent="menubg/HBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_hn6ym")
+text = "Preferences"
+
+[node name="Inbetweenpiece2" type="TextureRect" parent="menubg/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_fsdjo")
+stretch_mode = 3
+
+[node name="creditbutton" type="Button" parent="menubg/HBoxContainer"]
+layout_mode = 2
+text = "Credits"
+
+[node name="Inbetweenpiece3" type="TextureRect" parent="menubg/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_fsdjo")
+stretch_mode = 3
+
+[node name="exitbutton" type="Button" parent="menubg/HBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="backbutton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1510.0
+offset_top = 329.0
+offset_right = 1659.0
+offset_bottom = 412.0
+text = "Back"

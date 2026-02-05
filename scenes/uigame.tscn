@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://cooomx1feul6u"]
+
+[ext_resource type="Texture2D" uid="uid://btbr06xypbvck" path="res://images/game/lowerbar.png" id="1_qdej6"]
+[ext_resource type="Texture2D" uid="uid://c2a1ss4heme6k" path="res://images/game/health1.png" id="2_krunc"]
+[ext_resource type="Texture2D" uid="uid://dp2lbirankvbx" path="res://images/game/health2.png" id="3_e45l7"]
+[ext_resource type="Theme" uid="uid://cufhw6o7c36ap" path="res://themes/gameui.tres" id="4_0v13s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pp7bi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_krunc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_e45l7")
+}],
+"loop": true,
+"name": &"heart",
+"speed": 10.0
+}]
+
+[node name="uigame" type="CanvasLayer"]
+
+[node name="Lowerbar" type="TextureRect" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+offset_right = 1920.0
+grow_vertical = 0
+texture = ExtResource("1_qdej6")
+
+[node name="health" type="AnimatedSprite2D" parent="Lowerbar"]
+position = Vector2(57, 57)
+sprite_frames = SubResource("SpriteFrames_pp7bi")
+animation = &"heart"
+autoplay = "heart"
+frame_progress = 0.654731
+
+[node name="lives" type="Label" parent="Lowerbar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -846.0
+offset_top = -32.0
+offset_right = -790.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0v13s")
+text = "x ∞"

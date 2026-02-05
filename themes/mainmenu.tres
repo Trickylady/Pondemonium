@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://rc4laadkqcrj"]
+
+[ext_resource type="FontFile" uid="uid://rmqhfhiy8un2" path="res://fonts/Sofia_Handwritten.otf" id="1_v2mh1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2mh1"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+
+[resource]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_hover_color = Color(0.85539424, 0.4637847, 0.12849733, 1)
+Button/font_sizes/font_size = 75
+Button/fonts/font = ExtResource("1_v2mh1")
+Button/styles/disabled = SubResource("StyleBoxEmpty_v2mh1")
+Button/styles/focus = SubResource("StyleBoxEmpty_v2mh1")
+Button/styles/hover = SubResource("StyleBoxEmpty_v2mh1")
+Button/styles/normal = SubResource("StyleBoxEmpty_v2mh1")
+Button/styles/pressed = SubResource("StyleBoxEmpty_v2mh1")
