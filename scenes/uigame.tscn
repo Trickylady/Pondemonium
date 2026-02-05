@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://cooomx1feul6u"]
+[gd_scene load_steps=11 format=3 uid="uid://cooomx1feul6u"]
 
 [ext_resource type="Texture2D" uid="uid://btbr06xypbvck" path="res://images/game/lowerbar.png" id="1_qdej6"]
 [ext_resource type="Texture2D" uid="uid://c2a1ss4heme6k" path="res://images/game/health1.png" id="2_krunc"]
 [ext_resource type="Texture2D" uid="uid://dp2lbirankvbx" path="res://images/game/health2.png" id="3_e45l7"]
 [ext_resource type="Theme" uid="uid://cufhw6o7c36ap" path="res://themes/gameui.tres" id="4_0v13s"]
+[ext_resource type="Texture2D" uid="uid://dsoo5o4u2itec" path="res://images/game/big_bubble.png" id="5_0v13s"]
+[ext_resource type="FontFile" uid="uid://dk4ono84tlij7" path="res://fonts/BandaraSignature.ttf" id="6_pp7bi"]
+[ext_resource type="Texture2D" uid="uid://blsfj6804asl3" path="res://images/game/boost_electric_1.png" id="7_fl400"]
+[ext_resource type="Texture2D" uid="uid://bta40qv20vmaf" path="res://images/game/boost_glue_1.png" id="8_xkudx"]
+[ext_resource type="Texture2D" uid="uid://qmck7p5daslu" path="res://images/game/boost_reverse_1.png" id="9_07ih1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pp7bi"]
 animations = [{
@@ -30,6 +35,36 @@ offset_right = 1920.0
 grow_vertical = 0
 texture = ExtResource("1_qdej6")
 
+[node name="logotext" type="RichTextLabel" parent="Lowerbar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.46800002
+anchor_top = 0.083000004
+anchor_right = 0.57900006
+anchor_bottom = 0.99000007
+offset_left = -6.5600586
+offset_top = 0.03999901
+offset_right = -6.6800537
+offset_bottom = -2.8000107
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("6_pp7bi")
+theme_override_font_sizes/normal_font_size = 100
+text = "Pondemonium"
+
+[node name="BoostReverse1" type="Sprite2D" parent="Lowerbar"]
+position = Vector2(1611, 64)
+texture = ExtResource("9_07ih1")
+
+[node name="BoostGlue1" type="Sprite2D" parent="Lowerbar"]
+position = Vector2(1524, 64)
+texture = ExtResource("8_xkudx")
+
+[node name="BoostElectric1" type="Sprite2D" parent="Lowerbar"]
+position = Vector2(1429, 64)
+texture = ExtResource("7_fl400")
+
 [node name="health" type="AnimatedSprite2D" parent="Lowerbar"]
 position = Vector2(57, 57)
 sprite_frames = SubResource("SpriteFrames_pp7bi")
@@ -52,3 +87,40 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_0v13s")
 text = "x ∞"
+
+[node name="BigBubble" type="Sprite2D" parent="Lowerbar"]
+position = Vector2(277, 58)
+texture = ExtResource("5_0v13s")
+
+[node name="Bubblesamount" type="Label" parent="Lowerbar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -636.0
+offset_top = -34.0
+offset_right = -574.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0v13s")
+text = "x ∞"
+
+[node name="scoreamount" type="Label" parent="Lowerbar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 809.0
+offset_top = -25.0
+offset_right = 936.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0v13s")
+text = "12345"
+horizontal_alignment = 2

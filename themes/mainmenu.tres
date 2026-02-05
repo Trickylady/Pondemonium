@@ -1,10 +1,21 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://rc4laadkqcrj"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://rc4laadkqcrj"]
 
 [ext_resource type="FontFile" uid="uid://rmqhfhiy8un2" path="res://fonts/Sofia_Handwritten.otf" id="1_v2mh1"]
+[ext_resource type="Texture2D" uid="uid://mhuy7qhm4khj" path="res://images/menu/inbetweenpiece.png" id="2_k5e74"]
+[ext_resource type="Texture2D" uid="uid://bkmsvxueat2kn" path="res://images/menu/musicbar.png" id="3_t3r0h"]
+[ext_resource type="FontFile" uid="uid://bcjpinx7pcvy3" path="res://fonts/PirataOne-Regular.ttf" id="4_tsrna"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2mh1"]
 content_margin_left = 15.0
 content_margin_right = 15.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rt5vg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vmpy2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3hl4e"]
+content_margin_top = 15.0
+texture = ExtResource("3_t3r0h")
 
 [resource]
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
@@ -16,3 +27,12 @@ Button/styles/focus = SubResource("StyleBoxEmpty_v2mh1")
 Button/styles/hover = SubResource("StyleBoxEmpty_v2mh1")
 Button/styles/normal = SubResource("StyleBoxEmpty_v2mh1")
 Button/styles/pressed = SubResource("StyleBoxEmpty_v2mh1")
+HSlider/icons/grabber = ExtResource("2_k5e74")
+HSlider/icons/grabber_disabled = ExtResource("2_k5e74")
+HSlider/icons/grabber_highlight = ExtResource("2_k5e74")
+HSlider/styles/grabber_area = SubResource("StyleBoxEmpty_rt5vg")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_vmpy2")
+HSlider/styles/slider = SubResource("StyleBoxTexture_3hl4e")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/font_sizes/normal_font_size = 50
+RichTextLabel/fonts/normal_font = ExtResource("4_tsrna")
