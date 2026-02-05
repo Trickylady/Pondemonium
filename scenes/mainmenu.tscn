@@ -1,14 +1,24 @@
-[gd_scene load_steps=12 format=3 uid="uid://mttppave0n6l"]
+[gd_scene load_steps=18 format=3 uid="uid://mttppave0n6l"]
 
 [ext_resource type="Theme" uid="uid://rc4laadkqcrj" path="res://themes/mainmenu.tres" id="1_h73c4"]
 [ext_resource type="Texture2D" uid="uid://c0b343mu8ql53" path="res://images/menu/menubg.png" id="1_wf3n4"]
 [ext_resource type="Texture2D" uid="uid://qtgwe2dj6xba" path="res://images/menu/logo1.png" id="2_h73c4"]
+[ext_resource type="Script" uid="uid://d1ii78bt23y7e" path="res://scripts/mainmenu.gd" id="2_uui5l"]
 [ext_resource type="Texture2D" uid="uid://bkv7vli30tbyd" path="res://images/menu/logo2.png" id="3_uui5l"]
 [ext_resource type="Texture2D" uid="uid://cbv18oxa2e1sj" path="res://images/menu/logo3.png" id="4_4hago"]
 [ext_resource type="Texture2D" uid="uid://mciqaamqyma" path="res://images/menu/logo4.png" id="5_gjjcl"]
 [ext_resource type="Texture2D" uid="uid://cuci5d7irjj5a" path="res://images/menu/logo5.png" id="6_kait0"]
 [ext_resource type="Texture2D" uid="uid://duhrdfnfnqf0f" path="res://images/menu/logo6.png" id="7_6pj40"]
 [ext_resource type="Texture2D" uid="uid://mhuy7qhm4khj" path="res://images/menu/inbetweenpiece.png" id="9_fsdjo"]
+[ext_resource type="Texture2D" uid="uid://ba4tp0dk8w4dp" path="res://images/menu/normal.png" id="10_4hago"]
+[ext_resource type="Texture2D" uid="uid://clxq03tvymup3" path="res://images/menu/hardmode.png" id="11_gjjcl"]
+[ext_resource type="PackedScene" uid="uid://cniqe3vp0q66e" path="res://scenes/preferencetab.tscn" id="12_gjjcl"]
+[ext_resource type="AudioStream" uid="uid://253phgmrj712" path="res://sound/music/menumusic.mp3" id="14_kait0"]
+
+[sub_resource type="Theme" id="Theme_hn6ym"]
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kait0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xwyuh"]
 animations = [{
@@ -36,85 +46,159 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Theme" id="Theme_hn6ym"]
-
 [node name="Mainmenu" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1_h73c4")
+script = ExtResource("2_uui5l")
 
 [node name="menubg" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 texture = ExtResource("1_wf3n4")
 
-[node name="logogame" type="AnimatedSprite2D" parent="menubg"]
+[node name="menulist" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.33200002
+anchor_bottom = 0.094000004
+offset_left = 589.0
+offset_top = 406.0
+offset_right = 1469.9999
+offset_bottom = 481.0
+
+[node name="playbutton" type="Button" parent="menulist"]
+layout_mode = 2
+theme = ExtResource("1_h73c4")
+text = "Play"
+
+[node name="Inbetweenpiece" type="TextureRect" parent="menulist"]
+layout_mode = 2
+texture = ExtResource("9_fsdjo")
+stretch_mode = 3
+
+[node name="preferencesbutton" type="Button" parent="menulist"]
+layout_mode = 2
+theme = SubResource("Theme_hn6ym")
+text = "Preferences"
+
+[node name="Inbetweenpiece2" type="TextureRect" parent="menulist"]
+layout_mode = 2
+texture = ExtResource("9_fsdjo")
+stretch_mode = 3
+
+[node name="creditbutton" type="Button" parent="menulist"]
+layout_mode = 2
+text = "Credits"
+
+[node name="Inbetweenpiece3" type="TextureRect" parent="menulist"]
+layout_mode = 2
+texture = ExtResource("9_fsdjo")
+stretch_mode = 3
+
+[node name="exitbutton" type="Button" parent="menulist"]
+layout_mode = 2
+text = "Exit"
+
+[node name="TabContainer" type="TabContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 536.0
+offset_top = 560.0
+offset_right = -495.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kait0")
+current_tab = 0
+clip_tabs = false
+tabs_visible = false
+
+[node name="preferencetab" parent="TabContainer" instance=ExtResource("12_gjjcl")]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="credittab" type="Control" parent="TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="credittext" type="RichTextLabel" parent="TabContainer/credittab"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_h73c4")
+bbcode_enabled = true
+text = "Made by
+Trickylady
+
+SFX
+Pixabay"
+horizontal_alignment = 1
+
+[node name="playtab" type="Control" parent="TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="normalbutton" type="Button" parent="TabContainer/playtab"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 213.11264
+offset_right = 424.0
+offset_bottom = 288.11264
+rotation = -0.57750523
+text = "normal"
+
+[node name="hardmodebutton" type="Button" parent="TabContainer/playtab"]
+layout_mode = 0
+offset_left = 538.0002
+offset_top = 91.11276
+offset_right = 791.0002
+offset_bottom = 166.11276
+rotation = 0.3334551
+text = "hardmode"
+
+[node name="Normal" type="Sprite2D" parent="TabContainer/playtab"]
+position = Vector2(221, 104.11264)
+rotation = -0.36190754
+texture = ExtResource("10_4hago")
+
+[node name="Hardmode" type="Sprite2D" parent="TabContainer/playtab"]
+position = Vector2(665.0001, 93.11267)
+rotation = 0.43584973
+texture = ExtResource("11_gjjcl")
+
+[node name="logogame" type="AnimatedSprite2D" parent="."]
 position = Vector2(897, 351)
 sprite_frames = SubResource("SpriteFrames_xwyuh")
 animation = &"logomove"
 autoplay = "logomove"
 frame_progress = 0.58857733
 
-[node name="credittab" type="Control" parent="menubg"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Menumusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_kait0")
+autoplay = true
+bus = &"Music"
 
-[node name="preferencetab" type="Control" parent="menubg"]
-anchors_preset = 0
-offset_left = 883.0
-offset_top = 481.0
-offset_right = 923.0
-offset_bottom = 521.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="menubg"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.33200002
-anchor_bottom = 0.094000004
-offset_left = 589.0
-offset_top = 468.0
-offset_right = 882.55994
-offset_bottom = 488.47998
-
-[node name="playbutton" type="Button" parent="menubg/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_h73c4")
-text = "Play"
-
-[node name="Inbetweenpiece" type="TextureRect" parent="menubg/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("9_fsdjo")
-stretch_mode = 3
-
-[node name="preferencesbutton" type="Button" parent="menubg/HBoxContainer"]
-layout_mode = 2
-theme = SubResource("Theme_hn6ym")
-text = "Preferences"
-
-[node name="Inbetweenpiece2" type="TextureRect" parent="menubg/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("9_fsdjo")
-stretch_mode = 3
-
-[node name="creditbutton" type="Button" parent="menubg/HBoxContainer"]
-layout_mode = 2
-text = "Credits"
-
-[node name="Inbetweenpiece3" type="TextureRect" parent="menubg/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("9_fsdjo")
-stretch_mode = 3
-
-[node name="exitbutton" type="Button" parent="menubg/HBoxContainer"]
-layout_mode = 2
-text = "Exit"
-
-[node name="backbutton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1510.0
-offset_top = 329.0
-offset_right = 1659.0
-offset_bottom = 412.0
-text = "Back"
+[connection signal="pressed" from="menulist/playbutton" to="." method="_on_playbutton_pressed"]
+[connection signal="pressed" from="menulist/preferencesbutton" to="." method="_on_preferencesbutton_pressed"]
+[connection signal="pressed" from="menulist/creditbutton" to="." method="_on_creditbutton_pressed"]
+[connection signal="pressed" from="menulist/exitbutton" to="." method="_on_exitbutton_pressed"]
+[connection signal="pressed" from="TabContainer/playtab/normalbutton" to="." method="_on_normalbutton_pressed"]
+[connection signal="pressed" from="TabContainer/playtab/hardmodebutton" to="." method="_on_hardmodebutton_pressed"]
