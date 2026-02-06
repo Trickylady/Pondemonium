@@ -120,18 +120,18 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_kait0")
-current_tab = 0
+current_tab = 1
 clip_tabs = false
 tabs_visible = false
 
 [node name="preferencetab" parent="TabContainer" instance=ExtResource("12_gjjcl")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
 [node name="credittab" type="Control" parent="TabContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -144,11 +144,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_h73c4")
 bbcode_enabled = true
-text = "Made by
+text = "[font_size=30]Irad's protégée[/font_size]
 Trickylady
 
-SFX
-Pixabay"
+Sound
+[font_size=30]Pixabay[/font_size]"
 horizontal_alignment = 1
 
 [node name="playtab" type="Control" parent="TabContainer"]
