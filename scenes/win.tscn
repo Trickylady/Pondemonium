@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcy32hxcnh8bu"]
+
+[ext_resource type="Script" uid="uid://dvi6idd3haipi" path="res://scripts/win.gd" id="1_r4oei"]
+[ext_resource type="Texture2D" uid="uid://48w45e0r60jc" path="res://images/menu/pauze_screen_overlay.png" id="2_yxbqr"]
+[ext_resource type="Texture2D" uid="uid://cxxcq0msypei4" path="res://images/menu/ingame_popup.png" id="3_tylv2"]
+[ext_resource type="Theme" uid="uid://rc4laadkqcrj" path="res://themes/mainmenu.tres" id="4_5vxan"]
+
+[node name="Win" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_r4oei")
+
+[node name="bgg" type="TextureRect" parent="."]
+layout_mode = 1
+texture = ExtResource("2_yxbqr")
+
+[node name="pop_up" type="TextureRect" parent="bgg"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -495.5
+offset_top = -362.0
+offset_right = 495.5
+offset_bottom = 194.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_tylv2")
+
+[node name="menubut" type="Button" parent="bgg/pop_up"]
+layout_mode = 0
+offset_left = 318.5
+offset_top = 446.0
+offset_right = 680.5
+offset_bottom = 521.0
+theme = ExtResource("4_5vxan")
+text = "Back to Menu"
+
+[node name="winscreen" type="RichTextLabel" parent="bgg/pop_up"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -219.5
+offset_right = 219.5
+offset_bottom = 81.0
+grow_horizontal = 2
+theme = ExtResource("4_5vxan")
+text = "WINNER!"
+horizontal_alignment = 1
+
+[node name="wintext" type="RichTextLabel" parent="bgg/pop_up"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -372.0
+offset_top = -145.0
+offset_right = 371.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5vxan")
+text = "Congradulation, you did it!
+Score:"
+horizontal_alignment = 1
+
+[node name="endscore" type="RichTextLabel" parent="bgg/pop_up"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -368.0
+offset_top = 11.0
+offset_right = 375.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5vxan")
+horizontal_alignment = 1
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="bgg/pop_up/menubut" to="." method="_on_menubut_pressed"]

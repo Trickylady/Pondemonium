@@ -6,6 +6,8 @@
 radius = 39.012817
 
 [node name="Tilestone" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 51
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

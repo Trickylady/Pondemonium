@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://comuetut04glt"]
+[gd_scene load_steps=9 format=3 uid="uid://comuetut04glt"]
 
+[ext_resource type="Script" uid="uid://diesku4kxegj2" path="res://scripts/tilebubble.gd" id="1_hat6y"]
 [ext_resource type="Texture2D" uid="uid://blmd5gkcawb5y" path="res://images/game/tilebubble.png" id="1_ibsrb"]
 [ext_resource type="Texture2D" uid="uid://cjmpk22dok5f1" path="res://images/game/pop_1.png" id="2_ailre"]
 [ext_resource type="Texture2D" uid="uid://djn3sxnns8cxb" path="res://images/game/pop_2.png" id="3_hat6y"]
@@ -38,6 +39,9 @@ animations = [{
 radius = 39.051247
 
 [node name="Tilebubble" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 51
+script = ExtResource("1_hat6y")
 
 [node name="Tilebubble" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o2fme")
