@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://br7djnmi3nwym"]
+
+[ext_resource type="Script" uid="uid://g3ncosebnyia" path="res://scripts/pauzed.gd" id="1_8fpa2"]
+[ext_resource type="Texture2D" uid="uid://48w45e0r60jc" path="res://images/menu/pauze_screen_overlay.png" id="1_vu56i"]
+[ext_resource type="Texture2D" uid="uid://bfcsmp13xklnr" path="res://images/menu/ingame_menu.png" id="2_8fpa2"]
+[ext_resource type="PackedScene" uid="uid://cniqe3vp0q66e" path="res://scenes/preferencetab.tscn" id="3_m37n7"]
+[ext_resource type="Theme" uid="uid://rc4laadkqcrj" path="res://themes/mainmenu.tres" id="4_tgj65"]
+
+[node name="pauzed" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_8fpa2")
+
+[node name="bgpauzed" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_vu56i")
+
+[node name="pauze_screen" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = 718.0
+offset_top = 155.0
+offset_right = 1169.0
+offset_bottom = 711.0
+texture = ExtResource("2_8fpa2")
+
+[node name="preferencetab" parent="pauze_screen" instance=ExtResource("3_m37n7")]
+layout_mode = 1
+offset_left = 23.0
+offset_top = 62.0
+offset_right = 415.313
+offset_bottom = 384.596
+
+[node name="textpauzed" type="RichTextLabel" parent="pauze_screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_bottom = -486.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_tgj65")
+text = "Game Paused"
+horizontal_alignment = 1
+
+[node name="continuebutton" type="Button" parent="pauze_screen"]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 473.0
+offset_right = 442.0
+offset_bottom = 548.0
+theme = ExtResource("4_tgj65")
+text = "Continue"
+
+[node name="menubutton" type="Button" parent="pauze_screen"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 473.0
+offset_right = 166.0
+offset_bottom = 548.0
+theme = ExtResource("4_tgj65")
+text = "Menu"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="pauze_screen/continuebutton" to="." method="_on_continuebutton_pressed"]
+[connection signal="pressed" from="pauze_screen/menubutton" to="." method="_on_menubutton_pressed"]

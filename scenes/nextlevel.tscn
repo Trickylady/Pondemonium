@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://du5f7bd1yfbem"]
+
+[ext_resource type="Script" uid="uid://cg4vw5fboenxg" path="res://scripts/nextlevel.gd" id="1_2cglo"]
+[ext_resource type="Texture2D" uid="uid://48w45e0r60jc" path="res://images/menu/pauze_screen_overlay.png" id="2_5n106"]
+[ext_resource type="Texture2D" uid="uid://cxxcq0msypei4" path="res://images/menu/ingame_popup.png" id="3_5m5e0"]
+[ext_resource type="Theme" uid="uid://rc4laadkqcrj" path="res://themes/mainmenu.tres" id="4_h0pde"]
+
+[node name="Nextlevel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2cglo")
+
+[node name="bgnext" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5n106")
+
+[node name="pop" type="TextureRect" parent="bgnext"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -495.5
+offset_top = -360.0
+offset_right = 495.5
+offset_bottom = 196.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_5m5e0")
+
+[node name="nextl" type="Button" parent="bgnext/pop"]
+layout_mode = 0
+offset_left = 615.5
+offset_top = 435.0
+offset_right = 936.5
+offset_bottom = 510.0
+theme = ExtResource("4_h0pde")
+text = "Next Level!"
+
+[node name="btm" type="Button" parent="bgnext/pop"]
+layout_mode = 0
+offset_left = 49.5
+offset_top = 431.0
+offset_right = 207.5
+offset_bottom = 506.0
+theme = ExtResource("4_h0pde")
+text = "Menu"
+
+[node name="net" type="RichTextLabel" parent="bgnext/pop"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.0
+offset_top = 6.0
+offset_right = 227.0
+offset_bottom = 76.0
+grow_horizontal = 2
+theme = ExtResource("4_h0pde")
+text = "You did it!"
+horizontal_alignment = 1
+
+[node name="net2" type="RichTextLabel" parent="bgnext/pop"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.0
+offset_top = 213.0
+offset_right = 227.0
+offset_bottom = 283.0
+grow_horizontal = 2
+theme = ExtResource("4_h0pde")
+text = "Ready for the next level?"
+horizontal_alignment = 1
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="bgnext/pop/btm" to="." method="_on_btm_pressed"]

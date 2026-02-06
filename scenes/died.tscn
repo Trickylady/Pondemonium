@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlfuxnt1d8vjm"]
+
+[ext_resource type="Texture2D" uid="uid://48w45e0r60jc" path="res://images/menu/pauze_screen_overlay.png" id="1_d4luv"]
+[ext_resource type="Script" uid="uid://cw2irnr4r5w15" path="res://scripts/died.gd" id="1_jw1bs"]
+[ext_resource type="Texture2D" uid="uid://cxxcq0msypei4" path="res://images/menu/ingame_popup.png" id="2_jw1bs"]
+[ext_resource type="Theme" uid="uid://rc4laadkqcrj" path="res://themes/mainmenu.tres" id="3_mubft"]
+[ext_resource type="AudioStream" uid="uid://pquacpo31mih" path="res://sound/sfx/game_over.mp3" id="4_mr4x7"]
+
+[node name="Died" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jw1bs")
+
+[node name="puazebg" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_d4luv")
+
+[node name="popup" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 467.0
+offset_top = 162.0
+offset_right = 1458.0
+offset_bottom = 718.0
+texture = ExtResource("2_jw1bs")
+
+[node name="loze" type="RichTextLabel" parent="popup"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.0
+offset_top = 20.0
+offset_right = 88.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme = ExtResource("3_mubft")
+text = "You lose!"
+horizontal_alignment = 1
+
+[node name="losetext" type="RichTextLabel" parent="popup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.5
+offset_top = -40.0
+offset_right = 115.5
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_mubft")
+text = "Poor you..."
+
+[node name="menubut" type="Button" parent="popup"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -79.0
+offset_top = -87.0
+offset_right = 79.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_mubft")
+text = "Return to Menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mr4x7")
+autoplay = true
+bus = &"SFX"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="popup/menubut" to="." method="_on_menubut_pressed"]

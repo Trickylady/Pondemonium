@@ -63,14 +63,18 @@ animations = [{
 }]
 
 [node name="player" type="CharacterBody2D"]
+z_index = 1
+collision_mask = 174
 script = ExtResource("1_smehm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qlg0r")
 
-[node name="sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_smehm")
 animation = &"horizontal"
+autoplay = "horizontal"
 
 [node name="shield" type="AnimatedSprite2D" parent="."]
 visible = false
