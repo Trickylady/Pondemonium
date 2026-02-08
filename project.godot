@@ -13,6 +13,7 @@ config_version=5
 config/name="Pondemonium"
 run/main_scene="uid://mttppave0n6l"
 config/features=PackedStringArray("4.5", "Forward Plus")
+boot_splash/image="uid://cbmb410lhx0fj"
 config/icon="res://icon.svg"
 
 [autoload]

@@ -79,12 +79,10 @@ script = ExtResource("1_w8i8w")
 position = Vector2(-1.9999993, -1)
 shape = SubResource("CircleShape2D_w8i8w")
 
-[node name="sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_8qclf")
-animation = &"dead"
-frame = 3
-frame_progress = 1.0
+animation = &"horizon"
 
 [node name="glue" type="Sprite2D" parent="."]
 visible = false

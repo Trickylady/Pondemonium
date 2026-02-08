@@ -23,7 +23,6 @@ func _physics_process(delta: float) -> void:
 			elif input.y < 0: direction = Vector2.UP
 			elif input.x > 0: direction = Vector2.RIGHT
 			elif input.x < 0: direction = Vector2.LEFT
-			#%RayCastTiles.target_position = direction * Manager.TILE_SIZE
 			var next_pos = position + direction * Manager.TILE_SIZE
 			if not test_move(global_transform, direction * Manager.TILE_SIZE):
 				target_position = next_pos

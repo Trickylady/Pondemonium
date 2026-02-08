@@ -60,7 +60,7 @@ func shoot() -> void:
 
 func _process(_delta: float) -> void:
 	%Sprite.flip_h = direction == Vector2.LEFT
-	%Sprite.flip_v = direction == Vector2.UP
+	%Sprite.flip_v = direction == Vector2.DOWN
 	if direction.y != 0 and %Sprite.animation != "vertical":
 		%Sprite.play("vertic")
 	elif direction.x != 0 and %Sprite.animation != "horizontal":
