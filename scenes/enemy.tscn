@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c66kdbg8bfcc"]
+[gd_scene load_steps=15 format=3 uid="uid://c66kdbg8bfcc"]
 
 [ext_resource type="Texture2D" uid="uid://cp0gm42axev73" path="res://images/game/frog_attack.png" id="1_c4w8v"]
 [ext_resource type="Script" uid="uid://dptqwhq4d22ik" path="res://scripts/enemy.gd" id="1_w8i8w"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://biu2vix8x3dmy" path="res://images/game/kill_3.png" id="5_w8i8w"]
 [ext_resource type="Texture2D" uid="uid://duf5uwo52mjyo" path="res://images/game/kill_4.png" id="6_otmr2"]
 [ext_resource type="Texture2D" uid="uid://tu62o7ingh74" path="res://images/game/gluebubble.png" id="10_8qclf"]
+[ext_resource type="AudioStream" uid="uid://b7l7475hicwue" path="res://sound/sfx/frog_dead.mp3" id="12_otmr2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w8i8w"]
 radius = 29.0
@@ -79,9 +80,34 @@ position = Vector2(-1.9999993, -1)
 shape = SubResource("CircleShape2D_w8i8w")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_8qclf")
-animation = &"attackhor"
+animation = &"dead"
+frame = 3
+frame_progress = 1.0
 
 [node name="glue" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("10_8qclf")
+
+[node name="RayPlayerDetect" type="RayCast2D" parent="."]
+rotation = -1.5707964
+
+[node name="SFXfrogdead" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("12_otmr2")
+bus = &"SFX"
+
+[node name="movementrays" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Raydown" type="RayCast2D" parent="movementrays"]
+
+[node name="Rayup" type="RayCast2D" parent="movementrays"]
+rotation = 1.5707964
+
+[node name="Rayleft" type="RayCast2D" parent="movementrays"]
+rotation = 3.1415927
+
+[node name="Rayright" type="RayCast2D" parent="movementrays"]
+rotation = -1.5707964

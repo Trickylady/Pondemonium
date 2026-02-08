@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var walk_speed := Manager.TILE_SIZE.x * 4.0
 

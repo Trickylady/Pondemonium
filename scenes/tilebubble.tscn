@@ -46,10 +46,8 @@ script = ExtResource("1_hat6y")
 
 [node name="Tilebubble" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o2fme")
-animation = &"pop"
+animation = &"norm"
 autoplay = "norm"
-frame = 3
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -58,3 +56,5 @@ shape = SubResource("CircleShape2D_ailre")
 [node name="popsound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_s28mo")
 bus = &"SFX"
+
+[connection signal="animation_finished" from="Tilebubble" to="." method="_on_tilebubble_animation_finished"]
