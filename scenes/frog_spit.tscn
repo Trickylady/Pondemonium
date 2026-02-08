@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dd05vdwkrx3tm"]
+
+[ext_resource type="Texture2D" uid="uid://dlj44jmk5i6t1" path="res://images/game/frog_projectile.png" id="1_pmk6o"]
+[ext_resource type="AudioStream" uid="uid://dx224jw2wbm3h" path="res://sound/sfx/enemy_spit.mp3" id="2_jf743"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmk6o"]
+radius = 8.062258
+
+[node name="frog_spit" type="Area2D"]
+
+[node name="frog_spit" type="Sprite2D" parent="."]
+texture = ExtResource("1_pmk6o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pmk6o")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="SFXspit" type="AudioStreamPlayer" parent="Timer"]
+stream = ExtResource("2_jf743")
+bus = &"SFX"
