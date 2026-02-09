@@ -15,7 +15,7 @@ var is_dead: bool = false
 signal destroyed
 
 func _ready() -> void:
-	position = position.snapped(Manager.TILE_SIZE)
+	position = (position - Manager.TILE_SIZE/2.0).snapped(Manager.TILE_SIZE) + Manager.TILE_SIZE/2.0
 	target_position = position
 	set_physics_process(false)
 	await get_tree().create_timer(1.0).timeout

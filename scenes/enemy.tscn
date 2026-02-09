@@ -89,7 +89,7 @@ visible = false
 texture = ExtResource("10_8qclf")
 
 [node name="RayPlayerDetect" type="RayCast2D" parent="."]
-rotation = -1.5707964
+target_position = Vector2(80, 0)
 
 [node name="SFXfrogdead" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -100,12 +100,17 @@ bus = &"SFX"
 unique_name_in_owner = true
 
 [node name="Raydown" type="RayCast2D" parent="movementrays"]
+target_position = Vector2(0, 80)
+collision_mask = 12
 
 [node name="Rayup" type="RayCast2D" parent="movementrays"]
-rotation = 1.5707964
+target_position = Vector2(0, -80)
+collision_mask = 12
 
 [node name="Rayleft" type="RayCast2D" parent="movementrays"]
-rotation = 3.1415927
+target_position = Vector2(-80, 0)
+collision_mask = 12
 
 [node name="Rayright" type="RayCast2D" parent="movementrays"]
-rotation = -1.5707964
+target_position = Vector2(80, 0)
+collision_mask = 12

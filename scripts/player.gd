@@ -6,8 +6,10 @@ class_name Player
 var direction: Vector2 = Vector2.ZERO
 var target_position: Vector2
 var moving: bool = false
+var lives: int = 5
 
 func _ready() -> void:
+	position = (position - Manager.TILE_SIZE/2.0).snapped(Manager.TILE_SIZE) + Manager.TILE_SIZE/2.0
 	direction = Vector2.RIGHT
 
 func _physics_process(delta: float) -> void:
@@ -53,3 +55,7 @@ func can_shoot() -> bool:
 	if Manager.mode == Manager.Difficulty.NORMAL:
 		return true
 	return true
+
+func take_damage():
+	lives -= 1
+	print(lives)

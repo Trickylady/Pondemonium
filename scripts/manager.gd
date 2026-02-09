@@ -14,6 +14,7 @@ const levels = [
 
 var current_level: int = 0
 var mode: Difficulty
+var level: Level
 
 func _ready() -> void:
 	Input.set_custom_mouse_cursor(preload("res://images/menu/cursor.png"))

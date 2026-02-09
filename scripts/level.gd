@@ -2,6 +2,10 @@ extends Node2D
 class_name Level
 
 @onready var tile_map: TileMapLayer = $TileMap
+@onready var bullets: Node2D = $bullets
+
+func _init() -> void:
+	Manager.level = self
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
