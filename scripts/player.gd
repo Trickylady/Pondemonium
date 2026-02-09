@@ -5,6 +5,7 @@ class_name Player
 @onready var directiontimer: Timer = $Directiontimer
 
 signal bubblets_changed
+signal diededed
 
 var input_dir: Vector2
 var direction: Vector2 = Vector2.ZERO
@@ -97,7 +98,10 @@ func take_damage():
 	$AnimationPlayer.play("die")
 	$SFXdieplayer.play()
 	await $AnimationPlayer.animation_finished
-	respawn()
+	if Manager.lives <= 0:
+		diededed.emit()
+	else:
+		respawn()
 
 func respawn():
 	position = init_pos

@@ -11,6 +11,7 @@ func _ready() -> void:
 	Manager.catfish.bubblets_changed.connect(update_bubblets)
 	Manager.score_changed.connect(update_score)
 	Manager.lives_changed.connect(update_lives)
+	Manager.catfish.diededed.connect(show_deathscreen)
 
 func update_all():
 	update_score()
@@ -29,7 +30,10 @@ func update_bubblets():
 	%infinite.visible = Manager.mode == Manager.Difficulty.NORMAL
 
 func update_lives():
-	%scoreamount.text = "x %s" % str(Manager.lives)
+	%lives.text = "x %s" % str(Manager.lives)
 
 func update_boosts():
 	pass
+
+func show_deathscreen():
+	%Died.show()

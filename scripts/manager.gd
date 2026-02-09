@@ -57,3 +57,4 @@ func reset_stats():
 		lives = 1
 		bubblets_amount = 20
 	total_score = 0
+	get_tree().paused = false
