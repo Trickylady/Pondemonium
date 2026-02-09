@@ -15,6 +15,11 @@ var bubblets_remaining: int:
 		bubblets_remaining = value
 		bubblets_changed.emit()
 var init_pos: Vector2
+var is_dead: bool
+var is_respawning: bool:
+	set(value):
+		is_respawning = value
+		$CollisionShape2D.set_deferred("disabled", is_respawning)
 
 func _init() -> void:
 	Manager.catfish = self
@@ -28,6 +33,8 @@ func _ready() -> void:
 		bubblets_remaining = Manager.bubblets_amount
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
 	if Input.is_action_just_pressed(&"shoot") and can_shoot():
 		shoot()
 	if not moving:
@@ -49,7 +56,8 @@ func _physics_process(delta: float) -> void:
 				return
 			if not directiontimer.is_stopped():
 				return
-			
+			if is_respawning:
+				return
 			var next_pos = position + direction * Manager.TILE_SIZE
 			if not test_move(global_transform, direction * Manager.TILE_SIZE):
 				target_position = next_pos
@@ -83,4 +91,19 @@ func can_shoot() -> bool:
 
 func take_damage():
 	Manager.lives -= 1
+	is_respawning = true
+	is_dead = true
+	moving = false
 	$AnimationPlayer.play("die")
+	$SFXdieplayer.play()
+	await $AnimationPlayer.animation_finished
+	respawn()
+
+func respawn():
+	position = init_pos
+	is_dead = false
+	$AnimationPlayer.play("respawn")
+	$sfxrespawn.play()
+	await $AnimationPlayer.animation_finished
+	is_respawning = false
+	
