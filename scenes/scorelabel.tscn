@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckhl7njfkf0pw"]
+
+[ext_resource type="Script" uid="uid://bmljxnmrso00l" path="res://scripts/scorelabel.gd" id="1_mjp6a"]
+[ext_resource type="Texture2D" uid="uid://cluna36mhoayt" path="res://images/game/score_add.png" id="2_dmwkx"]
+[ext_resource type="FontFile" uid="uid://bcjpinx7pcvy3" path="res://fonts/PirataOne-Regular.ttf" id="3_dmwkx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hjjya"]
+font = ExtResource("3_dmwkx")
+font_size = 45
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="scorelabel" type="Node2D"]
+script = ExtResource("1_mjp6a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dmwkx")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -26.0
+offset_top = -34.0
+offset_right = 37.0
+offset_bottom = 31.0
+text = "200"
+label_settings = SubResource("LabelSettings_hjjya")
+horizontal_alignment = 1
+vertical_alignment = 1

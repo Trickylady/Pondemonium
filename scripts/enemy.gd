@@ -77,8 +77,18 @@ func die() -> void:
 	set_physics_process(false)
 	%SFXfrogdead.play()
 	%Sprite.play("dead")
+	
+	var point_label: ScoreLabel = preload("res://scenes/scorelabel.tscn").instantiate()
+	point_label.position = position
+	point_label.points_display = 200
+	point_label.target_pos = Manager.uigame.bucket.global_position
+	Manager.level.score_labels.add_child(point_label)
+	
 	await %Sprite.animation_finished
 	queue_free()
+
+func destroy():
+	die()
 
 func spawn_enemy_bubble():
 	pass

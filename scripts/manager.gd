@@ -16,6 +16,7 @@ signal score_changed
 
 var level: Level
 var catfish: Player
+var uigame: UI
 
 var mode: Difficulty
 var current_level: int = 0

@@ -70,6 +70,10 @@ offset_right = 1920.0
 grow_vertical = 0
 texture = ExtResource("1_qdej6")
 
+[node name="bucket" type="Marker2D" parent="Lowerbar"]
+unique_name_in_owner = true
+position = Vector2(1852, 69)
+
 [node name="LittleLogo" type="Sprite2D" parent="Lowerbar"]
 position = Vector2(938, 59)
 texture = ExtResource("6_5ur7j")

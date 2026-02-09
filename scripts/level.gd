@@ -4,6 +4,7 @@ class_name Level
 @onready var tile_map: TileMapLayer = $TileMap
 @onready var bullets: Node2D = $bullets
 @onready var enemies: Node2D = $enemies
+@onready var score_labels: Node2D = $score_labels
 
 func _init() -> void:
 	Manager.level = self

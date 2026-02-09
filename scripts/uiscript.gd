@@ -1,4 +1,10 @@
 extends CanvasLayer
+class_name UI
+
+@onready var bucket: Marker2D = %bucket
+
+func _init() -> void:
+	Manager.uigame = self
 
 func _ready() -> void:
 	update_all()
