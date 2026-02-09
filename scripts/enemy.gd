@@ -2,8 +2,8 @@ extends CharacterBody2D
 class_name Enemy
 
 @export var move_time := 0.60
-@export var see_distance: int = 4
-@export var shoot_cooldown: float = 0.8 
+@export var see_distance: int = 2
+@export var shoot_cooldown: float = 5 
 @export var bullet_speed: float = Manager.TILE_SIZE.x * 4.0
 
 var direction: Vector2 = Vector2.ZERO

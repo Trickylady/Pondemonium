@@ -3,15 +3,27 @@ class_name Player
 
 @export var walk_speed := Manager.TILE_SIZE.x * 4.0
 
+signal bubblets_changed
+
 var direction: Vector2 = Vector2.ZERO
 var target_position: Vector2
 var moving: bool = false
-var lives: int = 5
+var bubblets_remaining: int:
+	set(value):
+		bubblets_remaining = value
+		bubblets_changed.emit()
+var init_pos: Vector2
+
+func _init() -> void:
+	Manager.catfish = self
 
 func _ready() -> void:
 	position = (position - Manager.TILE_SIZE/2.0).snapped(Manager.TILE_SIZE) + Manager.TILE_SIZE/2.0
+	init_pos = position
 	direction = Vector2.RIGHT
 	$RichTextLabel.hide()
+	if Manager.mode == Manager.Difficulty.HARD:
+		bubblets_remaining = Manager.bubblets_amount
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(&"shoot") and can_shoot():
@@ -55,8 +67,8 @@ func shoot():
 func can_shoot() -> bool:
 	if Manager.mode == Manager.Difficulty.NORMAL:
 		return true
-	return true
+	return bubblets_remaining > 0
 
 func take_damage():
-	lives -= 1
+	Manager.lives -= 1
 	$AnimationPlayer.play("die")

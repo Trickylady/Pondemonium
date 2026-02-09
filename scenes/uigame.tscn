@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://cooomx1feul6u"]
+[gd_scene load_steps=16 format=3 uid="uid://cooomx1feul6u"]
 
+[ext_resource type="Script" uid="uid://yw3gqboxt4vg" path="res://scripts/uiscript.gd" id="1_2wy4j"]
 [ext_resource type="Texture2D" uid="uid://btbr06xypbvck" path="res://images/game/lowerbar.png" id="1_qdej6"]
 [ext_resource type="Texture2D" uid="uid://c2a1ss4heme6k" path="res://images/game/health1.png" id="2_krunc"]
 [ext_resource type="Texture2D" uid="uid://dp2lbirankvbx" path="res://images/game/health2.png" id="3_e45l7"]
@@ -30,6 +31,7 @@ animations = [{
 
 [node name="uigame" type="CanvasLayer"]
 process_mode = 3
+script = ExtResource("1_2wy4j")
 
 [node name="overlays" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -95,6 +97,7 @@ autoplay = "heart"
 frame_progress = 0.654731
 
 [node name="lives" type="Label" parent="Lowerbar"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -108,13 +111,14 @@ offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_0v13s")
-text = "x ∞"
+text = "X 1"
 
 [node name="BigBubble" type="Sprite2D" parent="Lowerbar"]
 position = Vector2(277, 58)
 texture = ExtResource("5_0v13s")
 
-[node name="Bubblesamount" type="Label" parent="Lowerbar"]
+[node name="bubblesamount" type="Label" parent="Lowerbar"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -128,9 +132,20 @@ offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_0v13s")
-text = "x ∞"
+text = "X"
+
+[node name="infinite" type="Label" parent="Lowerbar/bubblesamount"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 18.0
+offset_top = 44.0
+offset_right = 58.0
+offset_bottom = 100.0
+rotation = -1.5707964
+text = "8"
 
 [node name="scoreamount" type="Label" parent="Lowerbar"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -144,5 +159,5 @@ offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_0v13s")
-text = "12345"
+text = "XXXX"
 horizontal_alignment = 2

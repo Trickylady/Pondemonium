@@ -11,10 +11,24 @@ const levels = [
 	"res://scenes/level_4.tscn", 
 	"res://scenes/level_5.tscn"
 ]
+signal lives_changed
+signal score_changed
 
-var current_level: int = 0
-var mode: Difficulty
 var level: Level
+var catfish: Player
+
+var mode: Difficulty
+var current_level: int = 0
+
+var total_score: int = 0:
+	set(value):
+		total_score = value
+		score_changed.emit()
+var lives: int:
+	set(value):
+		lives = value
+		lives_changed.emit()
+var bubblets_amount: int
 
 func _ready() -> void:
 	Input.set_custom_mouse_cursor(preload("res://images/menu/cursor.png"))
@@ -22,6 +36,7 @@ func _ready() -> void:
 func start_game(difficulty: Difficulty):
 	current_level = 0
 	mode = difficulty
+	reset_stats()
 	go_to_next_level()
 
 func go_to_main_menu():
@@ -30,7 +45,14 @@ func go_to_main_menu():
 func go_to_next_level() -> void:
 	current_level +=1
 	if current_level >= levels.size():
-		print("wtf")
 		return
 	var level_path: String = levels[current_level -1]
 	get_tree().change_scene_to_file(level_path)
+
+func reset_stats():
+	if mode == Difficulty.NORMAL:
+		lives = 5 
+	if mode == Difficulty.HARD:
+		lives = 1
+		bubblets_amount = 20
+	total_score = 0
