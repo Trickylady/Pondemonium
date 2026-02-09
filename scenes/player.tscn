@@ -251,3 +251,7 @@ bus = &"SFX"
 [node name="sfxrespawn" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_jej6c")
 bus = &"SFX"
+
+[node name="Directiontimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true

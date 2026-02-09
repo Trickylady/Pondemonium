@@ -2,9 +2,11 @@ extends CharacterBody2D
 class_name Player
 
 @export var walk_speed := Manager.TILE_SIZE.x * 4.0
+@onready var directiontimer: Timer = $Directiontimer
 
 signal bubblets_changed
 
+var input_dir: Vector2
 var direction: Vector2 = Vector2.ZERO
 var target_position: Vector2
 var moving: bool = false
@@ -29,15 +31,25 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(&"shoot") and can_shoot():
 		shoot()
 	if not moving:
-		var input = Vector2(
+		var previous: Vector2 = input_dir
+		input_dir = Vector2(
 			Input.get_action_strength(&"right") - Input.get_action_strength(&"left"),
 			Input.get_action_strength(&"down") - Input.get_action_strength(&"up")
 		)
-		if input != Vector2.ZERO:
-			if input.y > 0: direction = Vector2.DOWN
-			elif input.y < 0: direction = Vector2.UP
-			elif input.x > 0: direction = Vector2.RIGHT
-			elif input.x < 0: direction = Vector2.LEFT
+		var input_changed: bool = previous != input_dir
+		if input_dir != Vector2.ZERO:
+			if input_dir.y > 0: direction = Vector2.DOWN
+			elif input_dir.y < 0: direction = Vector2.UP
+			elif input_dir.x > 0: direction = Vector2.RIGHT
+			elif input_dir.x < 0: direction = Vector2.LEFT
+			print(direction)
+			if input_changed:
+				if directiontimer.is_stopped():
+					directiontimer.start()
+				return
+			if not directiontimer.is_stopped():
+				return
+			
 			var next_pos = position + direction * Manager.TILE_SIZE
 			if not test_move(global_transform, direction * Manager.TILE_SIZE):
 				target_position = next_pos
