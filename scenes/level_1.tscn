@@ -54,7 +54,7 @@ rendering_quadrant_size = 80
 metadata/_edit_lock_ = true
 
 [node name="enemy" parent="enemies" instance=ExtResource("7_pa8r4")]
-position = Vector2(276, 43)
+position = Vector2(282, 277)
 
 [node name="player" parent="." instance=ExtResource("4_fcfvj")]
 position = Vector2(42, 42)

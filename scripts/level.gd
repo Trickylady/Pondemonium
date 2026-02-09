@@ -34,6 +34,6 @@ func get_tile_bubbles() -> Array[TileBubble]:
 			result.append(child)
 	return result
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		spawn_frog()
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("ui_accept"):
+		#spawn_frog()
