@@ -11,6 +11,7 @@ var lives: int = 5
 func _ready() -> void:
 	position = (position - Manager.TILE_SIZE/2.0).snapped(Manager.TILE_SIZE) + Manager.TILE_SIZE/2.0
 	direction = Vector2.RIGHT
+	$RichTextLabel.hide()
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(&"shoot") and can_shoot():
@@ -58,4 +59,4 @@ func can_shoot() -> bool:
 
 func take_damage():
 	lives -= 1
-	print(lives)
+	$AnimationPlayer.play("die")

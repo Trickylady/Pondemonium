@@ -27,6 +27,8 @@ func find_new_target() -> void:
 		if ray.is_colliding():
 			continue
 		possible_targets.append(ray.target_position)
+	if possible_targets.is_empty():
+		return
 	var random_dir: Vector2 = possible_targets.pick_random()
 	target_position = position + random_dir
 	direction = Vector2(random_dir.normalized())
