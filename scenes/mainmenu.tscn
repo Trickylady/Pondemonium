@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://mttppave0n6l"]
+[gd_scene load_steps=19 format=3 uid="uid://mttppave0n6l"]
 
 [ext_resource type="Theme" uid="uid://rc4laadkqcrj" path="res://themes/mainmenu.tres" id="1_h73c4"]
 [ext_resource type="Texture2D" uid="uid://c0b343mu8ql53" path="res://images/menu/menubg.png" id="1_wf3n4"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://clxq03tvymup3" path="res://images/menu/hardmode.png" id="11_gjjcl"]
 [ext_resource type="PackedScene" uid="uid://cniqe3vp0q66e" path="res://scenes/preferencetab.tscn" id="12_gjjcl"]
 [ext_resource type="AudioStream" uid="uid://253phgmrj712" path="res://sound/music/menumusic.mp3" id="14_kait0"]
+[ext_resource type="AudioStream" uid="uid://dil8a2brdn7ix" path="res://sound/sfx/menu_button.mp3" id="15_6pj40"]
 
 [sub_resource type="Theme" id="Theme_hn6ym"]
 RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
@@ -191,6 +192,11 @@ sprite_frames = SubResource("SpriteFrames_xwyuh")
 animation = &"logomove"
 autoplay = "logomove"
 frame_progress = 0.58857733
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("15_6pj40")
+bus = &"SFX"
 
 [node name="Menumusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_kait0")
