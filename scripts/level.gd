@@ -85,10 +85,3 @@ func enemy_killed():
 		return
 	if tot_frog_dead % spawn_count == 0:
 		spawn_frogs()
-
-
-
-#func _input(event: InputEvent) -> void:
-	#if event is InputEventKey:
-		#if event.is_pressed() and event.keycode == KEY_ENTER:
-			#swap_tiles.emit()

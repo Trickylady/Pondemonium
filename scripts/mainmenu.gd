@@ -8,14 +8,17 @@ func _ready() -> void:
 func _on_playbutton_pressed() -> void:
 	%TabContainer.show()
 	%playtab.show()
-
+	%SFX.play()
+	
 func _on_preferencesbutton_pressed() -> void:
 	%TabContainer.show()
 	%preferencetab.show()
+	%SFX.play()
 
 func _on_creditbutton_pressed() -> void:
 	%TabContainer.show()
 	%credittab.show()
+	%SFX.play()
 
 func _on_exitbutton_pressed() -> void:
 	get_tree().quit()
