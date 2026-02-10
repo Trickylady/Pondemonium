@@ -49,9 +49,9 @@ text = "Next Level!"
 
 [node name="btm" type="Button" parent="bgnext/pop"]
 layout_mode = 0
-offset_left = 49.5
+offset_left = 51.5
 offset_top = 431.0
-offset_right = 207.5
+offset_right = 209.5
 offset_bottom = 506.0
 theme = ExtResource("4_h0pde")
 text = "Menu"
@@ -85,4 +85,5 @@ text = "Ready for the next level?"
 horizontal_alignment = 1
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="bgnext/pop/nextl" to="." method="_on_nextl_pressed"]
 [connection signal="pressed" from="bgnext/pop/btm" to="." method="_on_btm_pressed"]

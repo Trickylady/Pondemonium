@@ -7,9 +7,9 @@ enum Difficulty{NORMAL, HARD}
 const levels = [
 	"res://scenes/level_1.tscn", 
 	"res://scenes/level_2.tscn", 
-	"res://scenes/level_3.tscn", 
-	"res://scenes/level_4.tscn", 
-	"res://scenes/level_5.tscn"
+	#"res://scenes/level_3.tscn", 
+	#"res://scenes/level_4.tscn", 
+	#"res://scenes/level_5.tscn"
 ]
 signal lives_changed
 signal score_changed
@@ -45,10 +45,11 @@ func go_to_main_menu():
 
 func go_to_next_level() -> void:
 	current_level +=1
-	if current_level >= levels.size():
+	if current_level > levels.size():
 		return
 	var level_path: String = levels[current_level -1]
 	get_tree().change_scene_to_file(level_path)
+	get_tree().paused = false
 
 func reset_stats():
 	if mode == Difficulty.NORMAL:

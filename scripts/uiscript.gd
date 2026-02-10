@@ -12,12 +12,15 @@ func _ready() -> void:
 	Manager.score_changed.connect(update_score)
 	Manager.lives_changed.connect(update_lives)
 	Manager.catfish.diededed.connect(show_deathscreen)
+	Manager.level.tot_frog_dead_changed.connect(update_frogs)
+	Manager.level.level_won.connect(on_level_won)
 
 func update_all():
 	update_score()
 	update_bubblets()
 	update_lives()
 	update_boosts()
+	update_frogs()
 
 func update_score():
 	%scoreamount.text = str(Manager.total_score)
@@ -35,5 +38,23 @@ func update_lives():
 func update_boosts():
 	pass
 
+func update_frogs():
+	var killed: int = Manager.level.tot_frog_dead
+	var tot: int = Manager.level.total_enemies
+	%frogs.text = "%d/%d" % [killed, tot]
+
 func show_deathscreen():
 	%Died.show()
+
+func show_next_level():
+	%Nextlevel.show()
+
+func show_win_screen():
+	%Win.show()
+
+func on_level_won():
+	await get_tree().create_timer(3).timeout
+	if Manager.current_level == Manager.levels.size():
+		show_win_screen()
+	else:
+		show_next_level()

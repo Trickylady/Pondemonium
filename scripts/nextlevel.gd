@@ -5,6 +5,12 @@ func _on_visibility_changed() -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	if is_node_ready():
+		get_tree().paused = is_visible_in_tree()
 
 func _on_btm_pressed() -> void:
 	Manager.go_to_main_menu()
+
+
+func _on_nextl_pressed() -> void:
+	Manager.go_to_next_level()

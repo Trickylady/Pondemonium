@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cooomx1feul6u"]
+[gd_scene load_steps=17 format=3 uid="uid://cooomx1feul6u"]
 
 [ext_resource type="Script" uid="uid://yw3gqboxt4vg" path="res://scripts/uiscript.gd" id="1_2wy4j"]
 [ext_resource type="Texture2D" uid="uid://btbr06xypbvck" path="res://images/game/lowerbar.png" id="1_qdej6"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dsoo5o4u2itec" path="res://images/game/big_bubble.png" id="5_0v13s"]
 [ext_resource type="Texture2D" uid="uid://1nkgyd0ean5l" path="res://images/menu/little logo.png" id="6_5ur7j"]
 [ext_resource type="Texture2D" uid="uid://blsfj6804asl3" path="res://images/game/boost_electric_1.png" id="7_fl400"]
+[ext_resource type="Texture2D" uid="uid://duxyax6kkdhsb" path="res://images/game/frog_horizontal_1.png" id="7_pd2gk"]
 [ext_resource type="Texture2D" uid="uid://bta40qv20vmaf" path="res://images/game/boost_glue_1.png" id="8_xkudx"]
 [ext_resource type="Texture2D" uid="uid://qmck7p5daslu" path="res://images/game/boost_reverse_1.png" id="9_07ih1"]
 [ext_resource type="PackedScene" uid="uid://br7djnmi3nwym" path="res://scenes/pauzed.tscn" id="10_vbeqw"]
@@ -74,6 +75,10 @@ texture = ExtResource("1_qdej6")
 unique_name_in_owner = true
 position = Vector2(1852, 69)
 
+[node name="FrogHorizontal1" type="Sprite2D" parent="Lowerbar"]
+position = Vector2(530, 55)
+texture = ExtResource("7_pd2gk")
+
 [node name="LittleLogo" type="Sprite2D" parent="Lowerbar"]
 position = Vector2(938, 59)
 texture = ExtResource("6_5ur7j")
@@ -116,6 +121,23 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_0v13s")
 text = "X 1"
+
+[node name="frogs" type="Label" parent="Lowerbar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -374.0
+offset_top = -32.0
+offset_right = -318.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0v13s")
+text = "0/10"
 
 [node name="BigBubble" type="Sprite2D" parent="Lowerbar"]
 position = Vector2(277, 58)
