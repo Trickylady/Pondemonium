@@ -11,7 +11,7 @@ enum Type{
 var type: Type
 var despawn_duration: float = 10
 var duration_glue: float = 15
-var duration_shield: float = 15
+var duration_shield: float = 45
 
 func _ready() -> void:
 	type = [

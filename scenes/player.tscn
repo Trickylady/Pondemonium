@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://2uhmtmnveqpv"]
+[gd_scene load_steps=22 format=3 uid="uid://2uhmtmnveqpv"]
 
 [ext_resource type="Texture2D" uid="uid://d1lvw8i1bha4" path="res://images/game/catfish_horizontal_1.png" id="1_dqkch"]
 [ext_resource type="Texture2D" uid="uid://1dfokpftbvx5" path="res://images/game/catfish_attack.png" id="1_qlg0r"]
@@ -65,6 +65,9 @@ animations = [{
 "name": &"elect",
 "speed": 15.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3v2ag"]
+radius = 41.19466
 
 [sub_resource type="Animation" id="Animation_jej6c"]
 length = 0.001
@@ -223,7 +226,7 @@ font_color = Color(1, 1, 0, 1)
 
 [node name="player" type="CharacterBody2D"]
 z_index = 1
-collision_mask = 174
+collision_mask = 172
 script = ExtResource("1_smehm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -241,6 +244,14 @@ sprite_frames = SubResource("SpriteFrames_d2wvv")
 animation = &"elect"
 autoplay = "elect"
 frame_progress = 0.9757046
+
+[node name="shield_area" type="Area2D" parent="shield"]
+collision_layer = 64
+collision_mask = 2
+
+[node name="cs_shield" type="CollisionShape2D" parent="shield/shield_area"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_3v2ag")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -267,3 +278,9 @@ bus = &"SFX"
 [node name="Directiontimer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
+
+[node name="timer_shield" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="shield/shield_area" to="." method="_on_shield_area_body_entered"]
+[connection signal="timeout" from="timer_shield" to="." method="stop_shield"]

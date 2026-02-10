@@ -7,6 +7,7 @@ class_name Player
 signal bubblets_changed
 signal diededed
 signal glue_picked_up(duration: float)
+signal shield_picked_up(duration: float)
 
 var input_dir: Vector2
 var direction: Vector2 = Vector2.ZERO
@@ -22,6 +23,7 @@ var is_respawning: bool:
 	set(value):
 		is_respawning = value
 		$CollisionShape2D.set_deferred("disabled", is_respawning)
+var is_shielded: bool = false
 
 func _init() -> void:
 	Manager.catfish = self
@@ -90,6 +92,8 @@ func can_shoot() -> bool:
 	return bubblets_remaining > 0
 
 func take_damage():
+	if is_shielded:
+		return
 	Manager.lives -= 1
 	is_respawning = true
 	is_dead = true
@@ -117,6 +121,28 @@ func pick_up(pickup: Pickup):
 		Pickup.Type.GLUE:
 			glue_picked_up.emit(pickup.duration_glue)
 		Pickup.Type.SHIELD:
-			pass
+			shield_picked_up.emit(pickup.duration_shield)
+			start_shield(pickup.duration_shield)
 		Pickup.Type.REVERSE:
 			Manager.level.swap_tiles.emit()
+
+func start_shield(duration: float):
+	is_shielded = true
+	$timer_shield.wait_time = duration
+	$timer_shield.start()
+	$shield.show()
+
+func stop_shield():
+	var tw:Tween = create_tween()
+	tw.set_ease(Tween.EASE_IN_OUT)
+	tw.set_trans(Tween.TRANS_CUBIC)
+	tw.set_loops(12)
+	tw.tween_property($shield, "modulate:a", 0, 0.3)
+	tw.tween_property($shield, "modulate:a", 1, 0.3)
+	await tw.finished
+	$shield.hide()
+	is_shielded = false
+
+func _on_shield_area_body_entered(body: Enemy) -> void:
+	if is_shielded:
+		body.destroy()
