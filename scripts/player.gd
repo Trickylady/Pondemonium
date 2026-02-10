@@ -6,6 +6,7 @@ class_name Player
 
 signal bubblets_changed
 signal diededed
+signal glue_picked_up(duration: float)
 
 var input_dir: Vector2
 var direction: Vector2 = Vector2.ZERO
@@ -114,7 +115,7 @@ func pick_up(pickup: Pickup):
 		Pickup.Type.HEART:
 			Manager.lives += 1
 		Pickup.Type.GLUE:
-			pass
+			glue_picked_up.emit(pickup.duration_glue)
 		Pickup.Type.SHIELD:
 			pass
 		Pickup.Type.REVERSE:

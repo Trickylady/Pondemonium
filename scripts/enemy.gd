@@ -11,8 +11,12 @@ var target_position: Vector2
 var is_moving := false
 var is_shooting: bool = false
 var is_dead: bool = false
+var is_glued: bool = false
 
 signal destroyed
+
+func _init() -> void:
+	Manager.catfish.glue_picked_up.connect(start_glue)
 
 func _ready() -> void:
 	position = (position - Manager.TILE_SIZE/2.0).snapped(Manager.TILE_SIZE) + Manager.TILE_SIZE/2.0
@@ -35,6 +39,8 @@ func find_new_target() -> void:
 	$RayPlayerDetect.target_position = Vector2(direction) * Manager.TILE_SIZE * see_distance
 
 func _physics_process(delta: float) -> void:
+	if is_glued:
+		return
 	if not is_shooting and $RayPlayerDetect.get_collider() is Player:
 		shoot()
 		return
@@ -93,6 +99,17 @@ func die() -> void:
 
 func destroy():
 	die()
+
+func start_glue(duration: float):
+	is_glued = true
+	$timer_glue.wait_time = duration
+	$timer_glue.start()
+	$glue.show()
+
+func stop_glue():
+	is_glued = false
+	$glue.hide()
+
 
 func spawn_enemy_bubble():
 	pass

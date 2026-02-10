@@ -115,3 +115,8 @@ collision_mask = 12
 [node name="Rayright" type="RayCast2D" parent="movementrays"]
 target_position = Vector2(80, 0)
 collision_mask = 12
+
+[node name="timer_glue" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="timer_glue" to="." method="stop_glue"]

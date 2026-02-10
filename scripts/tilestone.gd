@@ -7,5 +7,5 @@ func _ready() -> void:
 func swap():
 	var other_tile = preload("res://scenes/tilebubble.tscn").instantiate()
 	other_tile.position = position
-	add_sibling(other_tile)
+	add_sibling.call_deferred(other_tile)
 	queue_free()
