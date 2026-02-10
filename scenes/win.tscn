@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://48w45e0r60jc" path="res://images/menu/pauze_screen_overlay.png" id="2_yxbqr"]
 [ext_resource type="Texture2D" uid="uid://cxxcq0msypei4" path="res://images/menu/ingame_popup.png" id="3_tylv2"]
 [ext_resource type="Theme" uid="uid://rc4laadkqcrj" path="res://themes/mainmenu.tres" id="4_5vxan"]
-[ext_resource type="FontFile" uid="uid://bcjpinx7pcvy3" path="res://fonts/PirataOne-Regular.ttf" id="5_tylv2"]
+[ext_resource type="PackedScene" uid="uid://mwotfpom0hjs" path="res://scenes/endscore.tscn" id="5_tylv2"]
 
 [node name="Win" type="Control"]
 layout_mode = 3
@@ -70,27 +70,19 @@ text = "Congradulation, you did it!
 Score:"
 horizontal_alignment = 1
 
-[node name="endscore" type="Label" parent="bgg/pop_up"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -368.0
-offset_top = 11.0
-offset_right = 375.0
-offset_bottom = 81.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("4_5vxan")
-theme_override_colors/font_color = Color(0.8235294, 0.6039216, 0.12156863, 1)
-theme_override_fonts/font = ExtResource("5_tylv2")
-theme_override_font_sizes/font_size = 70
-text = "154646"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="endscore" parent="bgg/pop_up" instance=ExtResource("5_tylv2")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 743.0
+offset_bottom = 70.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="bgg/pop_up/menubut" to="." method="_on_menubut_pressed"]

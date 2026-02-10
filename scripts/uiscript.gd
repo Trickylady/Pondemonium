@@ -21,6 +21,7 @@ func update_all():
 	update_lives()
 	update_boosts()
 	update_frogs()
+	update_level()
 
 func update_score():
 	%scoreamount.text = str(Manager.total_score)
@@ -42,6 +43,11 @@ func update_frogs():
 	var killed: int = Manager.level.tot_frog_dead
 	var tot: int = Manager.level.total_enemies
 	%frogs.text = "%d/%d" % [killed, tot]
+
+func update_level():
+	var tot: int = Manager.levels.size()
+	var cur: int = Manager.current_level
+	%levelnum.text = "Level %d/%d" % [cur, tot]
 
 func show_deathscreen():
 	%Died.show()

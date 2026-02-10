@@ -10,3 +10,6 @@ func _on_visibility_changed() -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	if is_node_ready():
 		get_tree().paused = is_visible_in_tree()
+
+func _on_retry_pressed() -> void:
+	Manager.start_game(Manager.mode)
