@@ -5,11 +5,12 @@ const TILE_SIZE = Vector2(80,80)
 enum Difficulty{NORMAL, HARD}
 
 const levels = [
+	#"res://scenes/level_test.tscn", 
 	"res://scenes/level_1.tscn", 
 	"res://scenes/level_2.tscn", 
-	#"res://scenes/level_3.tscn", 
-	#"res://scenes/level_4.tscn", 
-	#"res://scenes/level_5.tscn"
+	"res://scenes/level_3.tscn", 
+	"res://scenes/level_4.tscn", 
+	"res://scenes/level_5.tscn"
 ]
 signal lives_changed
 signal score_changed
