@@ -108,3 +108,14 @@ func respawn():
 	$sfxrespawn.play()
 	await $AnimationPlayer.animation_finished
 	is_respawning = false
+	
+func pick_up(pickup: Pickup):
+	match pickup.type:
+		Pickup.Type.HEART:
+			Manager.lives += 1
+		Pickup.Type.GLUE:
+			pass
+		Pickup.Type.SHIELD:
+			pass
+		Pickup.Type.REVERSE:
+			Manager.level.swap_tiles.emit()
