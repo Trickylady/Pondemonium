@@ -12,6 +12,7 @@ var is_moving := false
 var is_shooting: bool = false
 var is_dead: bool = false
 var is_glued: bool = false
+var pickup_prob: float
 
 signal destroyed
 
@@ -24,6 +25,10 @@ func _ready() -> void:
 	set_physics_process(false)
 	await get_tree().create_timer(1.0).timeout
 	set_physics_process(true)
+	if Manager.mode == Manager.Difficulty.HARD:
+		pickup_prob = 0.35
+	else:
+		pickup_prob = 0.45
 
 func find_new_target() -> void:
 	var possible_targets: Array = []
@@ -90,9 +95,11 @@ func die() -> void:
 	point_label.target_pos = Manager.uigame.bucket.global_position
 	Manager.level.score_labels.add_child(point_label)
 	
-	var pickup: Pickup = preload("res://scenes/pickup.tscn").instantiate()
-	pickup.position = position
-	Manager.level.pickups.add_child.call_deferred(pickup)
+	var spawn_pickup: bool = randf() < pickup_prob
+	if spawn_pickup:
+		var pickup: Pickup = preload("res://scenes/pickup.tscn").instantiate()
+		pickup.position = position
+		Manager.level.pickups.add_child.call_deferred(pickup)
 	
 	await %Sprite.animation_finished
 	queue_free()
