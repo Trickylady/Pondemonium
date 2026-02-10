@@ -19,8 +19,10 @@ func _physics_process(delta: float) -> void:
 	position += direction * delta * speed
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.has_method("destroy"):
+	if body is Enemy:
 		body.destroy()
+	elif body is TileBubble:
+		body.destroy(true)
 	explode()
 
 func explode():

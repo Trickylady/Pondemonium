@@ -76,7 +76,7 @@ unique_name_in_owner = true
 position = Vector2(1852, 69)
 
 [node name="FrogHorizontal1" type="Sprite2D" parent="Lowerbar"]
-position = Vector2(530, 55)
+position = Vector2(530, 57)
 texture = ExtResource("7_pd2gk")
 
 [node name="LittleLogo" type="Sprite2D" parent="Lowerbar"]
