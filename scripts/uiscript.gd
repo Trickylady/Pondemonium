@@ -14,6 +14,10 @@ func _ready() -> void:
 	Manager.catfish.diededed.connect(show_deathscreen)
 	Manager.level.tot_frog_dead_changed.connect(update_frogs)
 	Manager.level.level_won.connect(on_level_won)
+	Manager.catfish.diededed.connect(stop_last_bubble)
+	Manager.catfish.last_bubblet_started.connect(start_last_bubble)
+	Manager.catfish.pick_up_collected.connect(pick_up_collected)
+	stop_last_bubble()
 
 func update_all():
 	update_score()
@@ -64,3 +68,39 @@ func on_level_won():
 		show_win_screen()
 	else:
 		show_next_level()
+
+func start_last_bubble():
+	%ProgressBar.show()
+	%lastbub.show()
+	set_process(true)
+
+func stop_last_bubble():
+	%ProgressBar.hide()
+	%lastbub.hide()
+	set_process(false)
+
+func _process(_delta: float) -> void:
+	var time_left: float = Manager.catfish.last_bubblet_timer.time_left
+	var tot_time: float = Manager.catfish.last_bubblet_timer.wait_time
+	var ratio: float = time_left / tot_time
+	%ProgressBar.value = ratio
+
+func pick_up_collected(pickup: Pickup):
+	match pickup.type:
+		Pickup.Type.GLUE:
+			blink_sprite(%BoostGlue1, pickup.duration_glue)
+		Pickup.Type.SHIELD:
+			blink_sprite(%BoostElectric1, pickup.duration_shield)
+		Pickup.Type.REVERSE:
+			blink_sprite(%BoostReverse1)
+
+func blink_sprite(sprite: Sprite2D, duration: float = 0):
+	sprite.modulate.a = 1
+	var tw:Tween = create_tween()
+	tw.set_ease(Tween.EASE_IN_OUT)
+	tw.set_trans(Tween.TRANS_CUBIC)
+	tw.tween_interval(duration)
+	tw.set_loops(12)
+	tw.tween_property(sprite, "modulate:a", 1, 0.3)
+	tw.tween_property(sprite, "modulate:a", 0.3, 0.3)
+	await tw.finished

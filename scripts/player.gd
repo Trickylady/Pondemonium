@@ -3,11 +3,14 @@ class_name Player
 
 @export var walk_speed := Manager.TILE_SIZE.x * 4.0
 @onready var directiontimer: Timer = $Directiontimer
+@onready var last_bubblet_timer: Timer = $last_bubblet_timer
 
 signal bubblets_changed
 signal diededed
 signal glue_picked_up(duration: float)
 signal shield_picked_up(duration: float)
+signal last_bubblet_started
+signal pick_up_collected(pickup: Pickup)
 
 var input_dir: Vector2
 var direction: Vector2 = Vector2.ZERO
@@ -88,6 +91,7 @@ func shoot():
 	if Manager.mode == Manager.Difficulty.HARD:
 		bubblets_remaining -= 1
 		if bubblets_remaining <= 0:
+			last_bubblet_started.emit()
 			$last_bubblet_timer.start()
 
 func can_shoot() -> bool:
@@ -121,6 +125,7 @@ func respawn():
 		bubblets_remaining = Manager.bubblets_amount
 	
 func pick_up(pickup: Pickup):
+	pick_up_collected.emit(pickup)
 	match pickup.type:
 		Pickup.Type.HEART:
 			Manager.lives += 1
