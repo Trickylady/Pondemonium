@@ -32,6 +32,12 @@ func update_score():
 
 func update_bubblets():
 	if Manager.mode == Manager.Difficulty.HARD:
+		var col: Color = Color.WHITE
+		if Manager.catfish.bubblets_remaining <= 3:
+			col = Color.RED
+		elif Manager.catfish.bubblets_remaining<= 8:
+			col = Color.ORANGE
+		%bubblesamount.modulate = col
 		%bubblesamount.text = "x %s" % str(Manager.catfish.bubblets_remaining)
 	else:
 		%bubblesamount.text = "x"
