@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://cmqpbgdoa8lag"]
+
+[ext_resource type="Script" uid="uid://djhcunsvk4x1r" path="res://scripts/pickup.gd" id="1_pg2rt"]
+[ext_resource type="Texture2D" uid="uid://bta40qv20vmaf" path="res://images/game/boost_glue_1.png" id="2_hqyie"]
+[ext_resource type="Texture2D" uid="uid://cte30547do8yo" path="res://images/game/boost_glue_2.png" id="3_t0qhb"]
+[ext_resource type="Texture2D" uid="uid://dmpxfh3koj04o" path="res://images/game/boost_life_1.png" id="4_mj4kx"]
+[ext_resource type="Texture2D" uid="uid://7jneg0bqkcrh" path="res://images/game/boost_life_2.png" id="5_ror3w"]
+[ext_resource type="Texture2D" uid="uid://qmck7p5daslu" path="res://images/game/boost_reverse_1.png" id="6_mj4kx"]
+[ext_resource type="Texture2D" uid="uid://1fjc54o1klw3" path="res://images/game/boost_reverse_2.png" id="7_ror3w"]
+[ext_resource type="Texture2D" uid="uid://blsfj6804asl3" path="res://images/game/boost_electric_1.png" id="8_hlv8s"]
+[ext_resource type="Texture2D" uid="uid://ce7d42iym8qb6" path="res://images/game/boost_electric_2.png" id="9_j61ql"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hlv8s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hqyie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t0qhb")
+}],
+"loop": true,
+"name": &"glues",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_mj4kx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ror3w")
+}],
+"loop": true,
+"name": &"hearts",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_mj4kx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ror3w")
+}],
+"loop": true,
+"name": &"reverses",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_hlv8s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_j61ql")
+}],
+"loop": true,
+"name": &"shields",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hlv8s"]
+radius = 20.0
+
+[node name="pickup" type="Area2D"]
+collision_layer = 128
+script = ExtResource("1_pg2rt")
+
+[node name="sprite_boost" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_hlv8s")
+animation = &"shields"
+frame = 1
+frame_progress = 0.9040719
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hlv8s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

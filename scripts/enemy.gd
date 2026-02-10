@@ -84,6 +84,10 @@ func die() -> void:
 	point_label.target_pos = Manager.uigame.bucket.global_position
 	Manager.level.score_labels.add_child(point_label)
 	
+	var pickup: Pickup = preload("res://scenes/pickup.tscn").instantiate()
+	pickup.position = position
+	Manager.level.pickups.add_child.call_deferred(pickup)
+	
 	await %Sprite.animation_finished
 	queue_free()
 

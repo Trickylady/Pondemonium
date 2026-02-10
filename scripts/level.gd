@@ -5,6 +5,7 @@ class_name Level
 @onready var bullets: Node2D = $bullets
 @onready var enemies: Node2D = $enemies
 @onready var score_labels: Node2D = $score_labels
+@onready var pickups: Node2D = $pickups
 
 @export var total_enemies: int = 10
 @export var spawn_count: int = 2
@@ -17,6 +18,8 @@ var tot_frog_dead: int = 0:
 
 signal tot_frog_dead_changed
 signal level_won
+@warning_ignore("unused_signal")
+signal swap_tiles
 
 func _init() -> void:
 	Manager.level = self
@@ -25,14 +28,6 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	await get_tree().create_timer(1).timeout
 	spawn_frogs()
-
-func swap_tiles ():
-	var cells1 = tile_map.get_used_cells_by_id(1, Vector2i.ZERO, 1)
-	var cells2 = tile_map.get_used_cells_by_id(1, Vector2i.ZERO, 2)
-	for cell in cells1:
-		tile_map.set_cell(cell,1, Vector2i.ZERO, 2)
-	for cell in cells2:
-		tile_map.set_cell(cell,1, Vector2i.ZERO,1)
 
 func spawn_frogs():
 	var frogs_to_spawn: int = spawn_count
@@ -68,3 +63,8 @@ func enemy_killed():
 		return
 	if tot_frog_dead % spawn_count == 0:
 		spawn_frogs()
+
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventKey:
+		#if event.is_pressed() and event.keycode == KEY_ENTER:
+			#swap_tiles.emit()

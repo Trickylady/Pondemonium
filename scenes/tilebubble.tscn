@@ -56,5 +56,3 @@ shape = SubResource("CircleShape2D_ailre")
 [node name="popsound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_s28mo")
 bus = &"SFX"
-
-[connection signal="animation_finished" from="Tilebubble" to="." method="_on_tilebubble_animation_finished"]
