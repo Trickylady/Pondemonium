@@ -50,7 +50,6 @@ func _physics_process(delta: float) -> void:
 			elif input_dir.y < 0: direction = Vector2.UP
 			elif input_dir.x > 0: direction = Vector2.RIGHT
 			elif input_dir.x < 0: direction = Vector2.LEFT
-			print(direction)
 			if input_changed:
 				if directiontimer.is_stopped():
 					directiontimer.start()
@@ -71,7 +70,6 @@ func _physics_process(delta: float) -> void:
 			moving = false
 
 func _process(_delta: float) -> void:
-	#if moving:
 	%Sprite.flip_h = direction == Vector2.LEFT
 	%Sprite.flip_v = direction == Vector2.UP
 	if direction.y != 0 and %Sprite.animation != "vertical":
@@ -110,4 +108,3 @@ func respawn():
 	$sfxrespawn.play()
 	await $AnimationPlayer.animation_finished
 	is_respawning = false
-	

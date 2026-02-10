@@ -26,7 +26,6 @@ func _ready() -> void:
 	await get_tree().create_timer(1).timeout
 	spawn_frogs()
 
-
 func swap_tiles ():
 	var cells1 = tile_map.get_used_cells_by_id(1, Vector2i.ZERO, 1)
 	var cells2 = tile_map.get_used_cells_by_id(1, Vector2i.ZERO, 2)
@@ -36,7 +35,10 @@ func swap_tiles ():
 		tile_map.set_cell(cell,1, Vector2i.ZERO,1)
 
 func spawn_frogs():
-	for i: int in spawn_count:
+	var frogs_to_spawn: int = spawn_count
+	var max_frogs_left: int = total_enemies - tot_frog_dead
+	frogs_to_spawn = min(frogs_to_spawn, max_frogs_left)
+	for i: int in frogs_to_spawn:
 		spawn_frog()
 
 func spawn_frog() -> void:
