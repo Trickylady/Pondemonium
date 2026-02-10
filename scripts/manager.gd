@@ -56,6 +56,6 @@ func reset_stats():
 		lives = 5 
 	if mode == Difficulty.HARD:
 		lives = 1
-		bubblets_amount = 20
+		bubblets_amount = 25
 	total_score = 0
 	get_tree().paused = false

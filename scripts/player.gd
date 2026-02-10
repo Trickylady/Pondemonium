@@ -85,6 +85,10 @@ func shoot():
 	proj.direction = direction
 	proj.position = position
 	add_sibling(proj)
+	if Manager.mode == Manager.Difficulty.HARD:
+		bubblets_remaining -= 1
+		if bubblets_remaining <= 0:
+			$last_bubblet_timer.start()
 
 func can_shoot() -> bool:
 	if Manager.mode == Manager.Difficulty.NORMAL:
@@ -113,6 +117,8 @@ func respawn():
 	$sfxrespawn.play()
 	await $AnimationPlayer.animation_finished
 	is_respawning = false
+	if Manager.mode == Manager.Difficulty.HARD:
+		bubblets_remaining = Manager.bubblets_amount
 	
 func pick_up(pickup: Pickup):
 	match pickup.type:
@@ -146,3 +152,7 @@ func stop_shield():
 func _on_shield_area_body_entered(body: Enemy) -> void:
 	if is_shielded:
 		body.destroy()
+
+
+func _on_last_bubblet_timer_timeout() -> void:
+	take_damage()

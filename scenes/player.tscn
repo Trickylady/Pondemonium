@@ -282,5 +282,10 @@ one_shot = true
 [node name="timer_shield" type="Timer" parent="."]
 one_shot = true
 
+[node name="last_bubblet_timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="body_entered" from="shield/shield_area" to="." method="_on_shield_area_body_entered"]
 [connection signal="timeout" from="timer_shield" to="." method="stop_shield"]
+[connection signal="timeout" from="last_bubblet_timer" to="." method="_on_last_bubblet_timer_timeout"]
