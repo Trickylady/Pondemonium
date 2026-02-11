@@ -10,6 +10,8 @@ class_name Level
 @export var total_enemies: int = 10
 @export var spawn_count: int = 2
 
+@export var boss_level: bool = false
+
 var tot_spawn_count: int = 0
 var tot_frog_dead: int = 0:
 	set(value):
@@ -26,8 +28,9 @@ func _init() -> void:
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-	await get_tree().create_timer(1).timeout
-	spawn_frogs()
+	if not boss_level:
+		await get_tree().create_timer(1).timeout
+		spawn_frogs()
 
 func spawn_frogs():
 	var frogs_to_spawn: int = spawn_count
