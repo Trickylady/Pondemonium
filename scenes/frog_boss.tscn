@@ -1,0 +1,79 @@
+[gd_scene load_steps=16 format=3 uid="uid://d1bxpo1lj2xyd"]
+
+[ext_resource type="Texture2D" uid="uid://1od2qee8r7sa" path="res://images/game/frogboss/arm_left.png" id="1_i0anu"]
+[ext_resource type="Texture2D" uid="uid://b7qfyaiwus1e5" path="res://images/game/frogboss/arm_right.png" id="2_yevb7"]
+[ext_resource type="Texture2D" uid="uid://b8kucc1jxlels" path="res://images/game/frogboss/eyebrow_left.png" id="3_4ep17"]
+[ext_resource type="Texture2D" uid="uid://d0nq66gw3o060" path="res://images/game/frogboss/eyebrow_right.png" id="4_txo52"]
+[ext_resource type="Texture2D" uid="uid://bbudtqm071ou0" path="res://images/game/frogboss/eye_hole.png" id="5_tu84q"]
+[ext_resource type="Texture2D" uid="uid://18mcmn53tofs" path="res://images/game/frogboss/eye_inner.png" id="6_0kk1o"]
+[ext_resource type="Texture2D" uid="uid://cekho650o2m6n" path="res://images/game/frogboss/eye_outer.png" id="7_jrnhb"]
+[ext_resource type="Texture2D" uid="uid://conl7coeia66q" path="res://images/game/frogboss/leg_left.png" id="8_aa4l1"]
+[ext_resource type="Texture2D" uid="uid://co1gbs5d3woi6" path="res://images/game/frogboss/leg_right.png" id="9_ga1eu"]
+[ext_resource type="Texture2D" uid="uid://bqg0rliuprt0q" path="res://images/game/frogboss/face.png" id="10_fu5jd"]
+[ext_resource type="Texture2D" uid="uid://lqwttvv1338b" path="res://images/game/frogboss/mouth_hole.png" id="11_3b0ii"]
+[ext_resource type="Texture2D" uid="uid://dej17anhifcnt" path="res://images/game/frogboss/jaw.png" id="12_6d5k3"]
+[ext_resource type="Texture2D" uid="uid://cmrtbsetr3cvd" path="res://images/game/frogboss/tongue.png" id="13_8nnpf"]
+[ext_resource type="Texture2D" uid="uid://b00i5nthtd3wq" path="res://images/game/frogboss/lip.png" id="14_5i58w"]
+[ext_resource type="Texture2D" uid="uid://dnrpy3p134ekv" path="res://images/game/frogboss/belly.png" id="15_gsutf"]
+
+[node name="frog_boss" type="Node2D"]
+
+[node name="ArmLeft" type="Sprite2D" parent="."]
+position = Vector2(107, 264)
+texture = ExtResource("1_i0anu")
+
+[node name="ArmRight" type="Sprite2D" parent="."]
+position = Vector2(211, 317)
+texture = ExtResource("2_yevb7")
+
+[node name="EyebrowLeft" type="Sprite2D" parent="."]
+position = Vector2(211, 317)
+texture = ExtResource("3_4ep17")
+
+[node name="EyebrowRight" type="Sprite2D" parent="."]
+position = Vector2(211, 317)
+texture = ExtResource("4_txo52")
+
+[node name="EyeHole" type="Sprite2D" parent="."]
+position = Vector2(211, 317)
+texture = ExtResource("5_tu84q")
+
+[node name="EyeInner" type="Sprite2D" parent="."]
+position = Vector2(211, 317)
+texture = ExtResource("6_0kk1o")
+
+[node name="EyeOuter" type="Sprite2D" parent="."]
+position = Vector2(211, 317)
+texture = ExtResource("7_jrnhb")
+
+[node name="LegLeft" type="Sprite2D" parent="."]
+position = Vector2(-41, 264)
+texture = ExtResource("8_aa4l1")
+
+[node name="LegRight" type="Sprite2D" parent="."]
+position = Vector2(125, 265)
+texture = ExtResource("9_ga1eu")
+
+[node name="Face" type="Sprite2D" parent="."]
+position = Vector2(49, 166)
+texture = ExtResource("10_fu5jd")
+
+[node name="MouthHole" type="Sprite2D" parent="."]
+position = Vector2(47, 200)
+texture = ExtResource("11_3b0ii")
+
+[node name="Jaw" type="Sprite2D" parent="."]
+position = Vector2(47, 211)
+texture = ExtResource("12_6d5k3")
+
+[node name="Tongue" type="Sprite2D" parent="."]
+position = Vector2(20, 205)
+texture = ExtResource("13_8nnpf")
+
+[node name="Lip" type="Sprite2D" parent="."]
+position = Vector2(48, 187)
+texture = ExtResource("14_5i58w")
+
+[node name="Belly" type="Sprite2D" parent="."]
+position = Vector2(45, 265)
+texture = ExtResource("15_gsutf")
