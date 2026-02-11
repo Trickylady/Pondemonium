@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://b42bxwqn1l1ie"]
+[gd_scene load_steps=13 format=4 uid="uid://b42bxwqn1l1ie"]
 
 [ext_resource type="Script" uid="uid://3kvq5qpjidjs" path="res://scripts/level.gd" id="1_cynta"]
 [ext_resource type="Texture2D" uid="uid://b100f218w1ucy" path="res://images/game/level5bg.png" id="2_cynta"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://2uhmtmnveqpv" path="res://scenes/player.tscn" id="4_uva14"]
 [ext_resource type="Texture2D" uid="uid://dmf05xyd5w8pv" path="res://images/game/limited_vis_overlay3.png" id="5_ak5vt"]
 [ext_resource type="AudioStream" uid="uid://iv0piw502txw" path="res://sound/music/level5.mp3" id="5_cynta"]
+[ext_resource type="PackedScene" uid="uid://bpoox67874lqv" path="res://scenes/lilly.tscn" id="5_ij176"]
 [ext_resource type="PackedScene" uid="uid://cooomx1feul6u" path="res://scenes/uigame.tscn" id="6_1q3ip"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rus8k"]
@@ -63,7 +64,36 @@ position = Vector2(42, 42)
 [node name="bullets" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
+[node name="lillypads" type="Node2D" parent="."]
+z_index = 3
+
+[node name="lilly" parent="lillypads" instance=ExtResource("5_ij176")]
+position = Vector2(181, 156)
+lilypad_id = 13
+sway_duration = 8.0
+
+[node name="lilly2" parent="lillypads" instance=ExtResource("5_ij176")]
+position = Vector2(312, 595)
+lilypad_id = 9
+sway_duration = 16.0
+
+[node name="lilly3" parent="lillypads" instance=ExtResource("5_ij176")]
+position = Vector2(772, 346)
+lilypad_id = 5
+sway_duration = 12.0
+
+[node name="lilly4" parent="lillypads" instance=ExtResource("5_ij176")]
+position = Vector2(1538, 966)
+lilypad_id = 23
+sway_duration = 15.0
+
+[node name="lilly5" parent="lillypads" instance=ExtResource("5_ij176")]
+position = Vector2(1450, 206)
+lilypad_id = 1
+sway_duration = 9.0
+
 [node name="limits" type="TextureRect" parent="."]
+visible = false
 z_index = 3
 offset_right = 40.0
 offset_bottom = 40.0

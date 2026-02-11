@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=4 uid="uid://82ol48d5b8s4"]
+[gd_scene load_steps=11 format=4 uid="uid://82ol48d5b8s4"]
 
 [ext_resource type="Script" uid="uid://3kvq5qpjidjs" path="res://scripts/level.gd" id="1_yvmk3"]
 [ext_resource type="Texture2D" uid="uid://b100f218w1ucy" path="res://images/game/level5bg.png" id="2_yvmk3"]
 [ext_resource type="TileSet" uid="uid://clvhrhecvs4op" path="res://themes/level_1.tres" id="3_7dxvt"]
-[ext_resource type="PackedScene" uid="uid://d0chiikqlr75e" path="res://scenes/water.tscn" id="3_r2no1"]
 [ext_resource type="PackedScene" uid="uid://2uhmtmnveqpv" path="res://scenes/player.tscn" id="4_6g5uf"]
 [ext_resource type="AudioStream" uid="uid://bolrcsmqog7tg" path="res://sound/music/level1.mp3" id="5_vogc1"]
 [ext_resource type="PackedScene" uid="uid://cooomx1feul6u" path="res://scenes/uigame.tscn" id="6_tdoqa"]
@@ -28,8 +27,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_yvmk3")
 metadata/_edit_lock_ = true
-
-[node name="water" parent="." instance=ExtResource("3_r2no1")]
 
 [node name="boundries" type="StaticBody2D" parent="."]
 collision_layer = 8

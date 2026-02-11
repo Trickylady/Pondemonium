@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=4 uid="uid://btcdonaks5305"]
+[gd_scene load_steps=14 format=4 uid="uid://btcdonaks5305"]
 
 [ext_resource type="Script" uid="uid://3kvq5qpjidjs" path="res://scripts/level.gd" id="1_6x5s0"]
 [ext_resource type="Texture2D" uid="uid://snm8co3ij8g3" path="res://images/game/level1bginvert.png" id="2_uwnnm"]
 [ext_resource type="TileSet" uid="uid://clvhrhecvs4op" path="res://themes/level_1.tres" id="3_fidgd"]
 [ext_resource type="PackedScene" uid="uid://2uhmtmnveqpv" path="res://scenes/player.tscn" id="4_isi3j"]
 [ext_resource type="AudioStream" uid="uid://bu5jnpdlblaca" path="res://sound/music/bossbattle.mp3" id="5_fidgd"]
+[ext_resource type="PackedScene" uid="uid://bpoox67874lqv" path="res://scenes/lilly.tscn" id="5_isi3j"]
 [ext_resource type="PackedScene" uid="uid://cooomx1feul6u" path="res://scenes/uigame.tscn" id="6_abjnl"]
 [ext_resource type="PackedScene" uid="uid://d1bxpo1lj2xyd" path="res://scenes/frog_boss.tscn" id="8_fidgd"]
 [ext_resource type="PackedScene" uid="uid://dc2kgiu3wun86" path="res://scenes/pike_spawn.tscn" id="9_isi3j"]
@@ -65,7 +66,30 @@ position = Vector2(48, 45)
 [node name="bullets" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="level1audio" type="AudioStreamPlayer" parent="."]
+[node name="lillypads" type="Node2D" parent="."]
+z_index = 3
+
+[node name="lilly" parent="lillypads" instance=ExtResource("5_isi3j")]
+position = Vector2(216, 889)
+lilypad_id = 0
+sway_duration = 8.0
+
+[node name="lilly2" parent="lillypads" instance=ExtResource("5_isi3j")]
+position = Vector2(352, 139)
+lilypad_id = 6
+sway_duration = 16.0
+
+[node name="lilly3" parent="lillypads" instance=ExtResource("5_isi3j")]
+position = Vector2(1397, 699)
+lilypad_id = 5
+sway_duration = 12.0
+
+[node name="lilly4" parent="lillypads" instance=ExtResource("5_isi3j")]
+position = Vector2(1650, 215)
+lilypad_id = 3
+sway_duration = 15.0
+
+[node name="level6audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_fidgd")
 autoplay = true
 bus = &"Music"
@@ -74,6 +98,7 @@ bus = &"Music"
 
 [node name="score_labels" type="Node2D" parent="."]
 z_index = 2
+position = Vector2(0, -1)
 
 [node name="frog_boss" parent="." instance=ExtResource("8_fidgd")]
 position = Vector2(923, 518)

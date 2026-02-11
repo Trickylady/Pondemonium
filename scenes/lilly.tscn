@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpoox67874lqv"]
+
+[ext_resource type="Script" uid="uid://c7gws0exyu1ju" path="res://scripts/lilly.gd" id="1_mte64"]
+[ext_resource type="Texture2D" uid="uid://c1nnjhxwxhg2i" path="res://images/game/lillypads.png" id="2_ommiq"]
+
+[node name="lilly" type="Node2D"]
+script = ExtResource("1_mte64")
+lilypad_id = 26
+
+[node name="Lillypads" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, 7)
+texture = ExtResource("2_ommiq")
+region_enabled = true
+region_rect = Rect2(1612, 646, 244, 209)
