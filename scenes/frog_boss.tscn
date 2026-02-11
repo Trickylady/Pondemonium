@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://d1bxpo1lj2xyd"]
+[gd_scene load_steps=36 format=3 uid="uid://d1bxpo1lj2xyd"]
 
+[ext_resource type="Script" uid="uid://403wrj0npow1" path="res://scripts/frog_boss.gd" id="1_4ep17"]
 [ext_resource type="Texture2D" uid="uid://1od2qee8r7sa" path="res://images/game/frogboss/arm_left.png" id="1_i0anu"]
 [ext_resource type="Texture2D" uid="uid://b7qfyaiwus1e5" path="res://images/game/frogboss/arm_right.png" id="2_yevb7"]
 [ext_resource type="Texture2D" uid="uid://b8kucc1jxlels" path="res://images/game/frogboss/eyebrow_left.png" id="3_4ep17"]
@@ -15,65 +16,593 @@
 [ext_resource type="Texture2D" uid="uid://cmrtbsetr3cvd" path="res://images/game/frogboss/tongue.png" id="13_8nnpf"]
 [ext_resource type="Texture2D" uid="uid://b00i5nthtd3wq" path="res://images/game/frogboss/lip.png" id="14_5i58w"]
 [ext_resource type="Texture2D" uid="uid://dnrpy3p134ekv" path="res://images/game/frogboss/belly.png" id="15_gsutf"]
+[ext_resource type="Texture2D" uid="uid://dchkrokdyicmy" path="res://images/game/boss_bubble.png" id="17_4ep17"]
+[ext_resource type="AudioStream" uid="uid://bra57m5omri35" path="res://sound/sfx/boss_shield_on.mp3" id="18_txo52"]
+[ext_resource type="AudioStream" uid="uid://fkpfdfxgiba6" path="res://sound/sfx/boss_talk.mp3" id="19_fu5jd"]
+[ext_resource type="AudioStream" uid="uid://dckfltknigjrx" path="res://sound/sfx/boss_shoot.mp3" id="19_tu84q"]
+[ext_resource type="AudioStream" uid="uid://bcxa4eobt50ru" path="res://sound/sfx/boss_talk2.mp3" id="20_3b0ii"]
+[ext_resource type="AudioStream" uid="uid://e712qrx8b43p" path="res://sound/sfx/boss_talk3.mp3" id="21_6d5k3"]
+[ext_resource type="AudioStream" uid="uid://254unkgmmuo0" path="res://sound/sfx/boss_talk4.mp3" id="22_8nnpf"]
+[ext_resource type="AudioStream" uid="uid://cnl03gabm42eq" path="res://sound/sfx/boss_dies.mp3" id="23_5i58w"]
 
-[node name="frog_boss" type="Node2D"]
+[sub_resource type="Animation" id="Animation_txo52"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Face/EyeOuterRight/EyebrowRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-19, -22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Face/EyeOuterLeft/EyebrowLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(23, -24)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Face/EyeOuterRight/EyebrowRight:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Face/EyeOuterLeft/EyebrowLeft:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Face/Jaw:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 36)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Face/Jaw:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/ArmLeft:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-43.5, 12)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/ArmLeft:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Body/ArmRight:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(37.5, 11)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Body/ArmRight:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Body/Face/Tongue:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Body/Face/Tongue:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 21)]
+}
 
-[node name="ArmLeft" type="Sprite2D" parent="."]
-position = Vector2(107, 264)
-texture = ExtResource("1_i0anu")
+[sub_resource type="Animation" id="Animation_4ep17"]
+resource_name = "frown"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Face/EyeOuterRight/EyebrowRight:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.29, 0.46666667, 0.65, 2.02, 2.2, 2.38),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-19, -22), Vector2(-23, -14), Vector2(-23, -14), Vector2(-23, -14), Vector2(-23, -14), Vector2(-19, -22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Face/EyeOuterLeft/EyebrowLeft:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.29, 0.46666667, 0.65, 2.02, 2.2, 2.38),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(23, -24), Vector2(25, -16), Vector2(25, -16), Vector2(25, -16), Vector2(25, -16), Vector2(23, -24)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Face/EyeOuterRight/EyebrowRight:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.29, 0.46666667, 0.65, 2.02, 2.2, 2.38),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.24863747, -0.24863747, -0.24863747, -0.24863747, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Face/EyeOuterLeft/EyebrowLeft:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.29, 0.46666667, 0.65, 2.02, 2.2, 2.38),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.23608918, 0.23608918, 0.23608918, 0.23608918, 0.0]
+}
 
-[node name="ArmRight" type="Sprite2D" parent="."]
-position = Vector2(211, 317)
-texture = ExtResource("2_yevb7")
+[sub_resource type="Animation" id="Animation_tu84q"]
+resource_name = "hit"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Face/EyeOuterLeft/EyebrowLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.46666667, 0.69),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(23, -24), Vector2(-7, -32), Vector2(-7, -32), Vector2(23, -24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Face/EyeOuterLeft/EyebrowLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.46666667, 0.69),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.0089695, -1.0089695, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Face/EyeOuterRight/EyebrowRight:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.46666667, 0.69),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-19, -22), Vector2(0, -33), Vector2(0, -33), Vector2(-19, -22)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Face/EyeOuterRight/EyebrowRight:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.46666667, 0.69),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.76248294, 0.76248294, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Face/Jaw:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.21, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 36), Vector2(1, 43), Vector2(1, 43), Vector2(2, 36)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Face/Jaw:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.21, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.07532973, 0.07532973, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/ArmLeft:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.19, 0.45, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-43.5, 12), Vector2(-43, 18), Vector2(-43, 18), Vector2(-43.5, 12)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/ArmLeft:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.19, 0.45, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.07699265, 0.07699265, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Body/ArmRight:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.23, 0.51, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(37.5, 11), Vector2(31, 11), Vector2(31, 11), Vector2(37.5, 11)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Body/ArmRight:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.23, 0.51, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.27970263, 0.27970263, 0.0]
+}
 
-[node name="EyebrowLeft" type="Sprite2D" parent="."]
-position = Vector2(211, 317)
-texture = ExtResource("3_4ep17")
+[sub_resource type="Animation" id="Animation_yevb7"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Face/Tongue:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.31184274, -0.44163215, 0.0]
+}
 
-[node name="EyebrowRight" type="Sprite2D" parent="."]
-position = Vector2(211, 317)
-texture = ExtResource("4_txo52")
+[sub_resource type="Animation" id="Animation_0kk1o"]
+resource_name = "shoot"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Face/Tongue:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 21), Vector2(7, 20), Vector2(7, 20), Vector2(0, 21)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Face/Tongue:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.5235988, -0.5235988, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Face/Jaw:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 36), Vector2(4, 45), Vector2(4, 45), Vector2(2, 36)]
+}
 
-[node name="EyeHole" type="Sprite2D" parent="."]
-position = Vector2(211, 317)
-texture = ExtResource("5_tu84q")
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0kk1o"]
+_data = {
+&"RESET": SubResource("Animation_txo52"),
+&"frown": SubResource("Animation_4ep17"),
+&"hit": SubResource("Animation_tu84q"),
+&"idle": SubResource("Animation_yevb7"),
+&"shoot": SubResource("Animation_0kk1o")
+}
 
-[node name="EyeInner" type="Sprite2D" parent="."]
-position = Vector2(211, 317)
-texture = ExtResource("6_0kk1o")
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ep17"]
+radius = 85.02353
 
-[node name="EyeOuter" type="Sprite2D" parent="."]
-position = Vector2(211, 317)
-texture = ExtResource("7_jrnhb")
+[sub_resource type="CircleShape2D" id="CircleShape2D_txo52"]
+radius = 30.016663
 
-[node name="LegLeft" type="Sprite2D" parent="."]
-position = Vector2(-41, 264)
+[sub_resource type="CircleShape2D" id="CircleShape2D_tu84q"]
+radius = 132.54433
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gsutf"]
+streams_count = 4
+stream_0/stream = ExtResource("19_fu5jd")
+stream_1/stream = ExtResource("20_3b0ii")
+stream_2/stream = ExtResource("21_6d5k3")
+stream_3/stream = ExtResource("22_8nnpf")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tu84q"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("19_tu84q")
+
+[node name="frog_boss" type="CharacterBody2D"]
+position = Vector2(374, 299)
+collision_layer = 6
+collision_mask = 16
+script = ExtResource("1_4ep17")
+
+[node name="animations" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_0kk1o")
+}
+autoplay = "idle"
+
+[node name="Body" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 18)
+texture = ExtResource("15_gsutf")
+
+[node name="LegLeft" type="Sprite2D" parent="Body"]
+show_behind_parent = true
+position = Vector2(-80.5, 4)
 texture = ExtResource("8_aa4l1")
 
-[node name="LegRight" type="Sprite2D" parent="."]
-position = Vector2(125, 265)
+[node name="LegRight" type="Sprite2D" parent="Body"]
+show_behind_parent = true
+position = Vector2(73.5, 3)
 texture = ExtResource("9_ga1eu")
 
-[node name="Face" type="Sprite2D" parent="."]
-position = Vector2(49, 166)
+[node name="ArmLeft" type="Sprite2D" parent="Body"]
+position = Vector2(-43.5, 12)
+texture = ExtResource("1_i0anu")
+
+[node name="ArmRight" type="Sprite2D" parent="Body"]
+position = Vector2(37.5, 11)
+texture = ExtResource("2_yevb7")
+
+[node name="Face" type="Sprite2D" parent="Body"]
+unique_name_in_owner = true
+position = Vector2(0, -60)
 texture = ExtResource("10_fu5jd")
 
-[node name="MouthHole" type="Sprite2D" parent="."]
-position = Vector2(47, 200)
+[node name="EyeOuterLeft" type="Sprite2D" parent="Body/Face"]
+position = Vector2(-52, -18)
+texture = ExtResource("7_jrnhb")
+
+[node name="EyePupilLeft" type="Sprite2D" parent="Body/Face/EyeOuterLeft"]
+unique_name_in_owner = true
+texture = ExtResource("6_0kk1o")
+
+[node name="EyeGlare" type="Sprite2D" parent="Body/Face/EyeOuterLeft/EyePupilLeft"]
+position = Vector2(-5, -5)
+texture = ExtResource("5_tu84q")
+
+[node name="EyebrowLeft" type="Sprite2D" parent="Body/Face/EyeOuterLeft"]
+position = Vector2(23, -24)
+texture = ExtResource("3_4ep17")
+offset = Vector2(-15, 3)
+
+[node name="EyeOuterRight" type="Sprite2D" parent="Body/Face"]
+position = Vector2(48, -19)
+texture = ExtResource("7_jrnhb")
+
+[node name="EyePupilRight" type="Sprite2D" parent="Body/Face/EyeOuterRight"]
+unique_name_in_owner = true
+texture = ExtResource("6_0kk1o")
+
+[node name="EyeGlare" type="Sprite2D" parent="Body/Face/EyeOuterRight/EyePupilRight"]
+position = Vector2(-5, -5)
+texture = ExtResource("5_tu84q")
+
+[node name="EyebrowRight" type="Sprite2D" parent="Body/Face/EyeOuterRight"]
+position = Vector2(-19, -22)
+texture = ExtResource("4_txo52")
+offset = Vector2(14, 1)
+
+[node name="MouthHole" type="Sprite2D" parent="Body/Face"]
+position = Vector2(-1, 32)
 texture = ExtResource("11_3b0ii")
 
-[node name="Jaw" type="Sprite2D" parent="."]
-position = Vector2(47, 211)
+[node name="Jaw" type="Sprite2D" parent="Body/Face"]
+position = Vector2(2, 36)
 texture = ExtResource("12_6d5k3")
 
-[node name="Tongue" type="Sprite2D" parent="."]
-position = Vector2(20, 205)
+[node name="Tongue" type="Sprite2D" parent="Body/Face"]
+position = Vector2(0, 21)
 texture = ExtResource("13_8nnpf")
+offset = Vector2(-26, 17)
 
-[node name="Lip" type="Sprite2D" parent="."]
-position = Vector2(48, 187)
+[node name="Lip" type="Sprite2D" parent="Body/Face"]
+position = Vector2(2, 19)
 texture = ExtResource("14_5i58w")
 
-[node name="Belly" type="Sprite2D" parent="."]
-position = Vector2(45, 265)
-texture = ExtResource("15_gsutf")
+[node name="collision_body" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_4ep17")
+
+[node name="collision_leg_left" type="CollisionShape2D" parent="."]
+position = Vector2(-74, 31)
+shape = SubResource("CircleShape2D_txo52")
+
+[node name="collision_leg_right" type="CollisionShape2D" parent="."]
+position = Vector2(67, 31)
+shape = SubResource("CircleShape2D_txo52")
+
+[node name="shield_area" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 16
+
+[node name="shield_collision" type="CollisionShape2D" parent="shield_area"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_tu84q")
+disabled = true
+
+[node name="timer_stop_shield" type="Timer" parent="shield_area"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="sprite_shield" type="Sprite2D" parent="shield_area"]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("17_4ep17")
+
+[node name="timer_shoot" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[node name="timer_random_anim" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[node name="sfx_shield" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("18_txo52")
+bus = &"SFX"
+
+[node name="sfx_talk" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_gsutf")
+bus = &"SFX"
+
+[node name="sfx_die" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("23_5i58w")
+bus = &"SFX"
+
+[node name="sfx_shoot" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_tu84q")
+bus = &"SFX"
+
+[node name="pikes_spawn" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="pikes_up" type="Node2D" parent="pikes_spawn"]
+unique_name_in_owner = true
+
+[node name="pikes_down" type="Node2D" parent="pikes_spawn"]
+unique_name_in_owner = true
+
+[node name="pikes_left" type="Node2D" parent="pikes_spawn"]
+unique_name_in_owner = true
+
+[node name="pikes_right" type="Node2D" parent="pikes_spawn"]
+unique_name_in_owner = true
+
+[connection signal="area_entered" from="shield_area" to="." method="_on_shield_area_area_entered"]
+[connection signal="timeout" from="shield_area/timer_stop_shield" to="." method="stop_shield"]
+[connection signal="timeout" from="timer_shoot" to="." method="shoot"]
+[connection signal="timeout" from="timer_random_anim" to="." method="_on_timer_random_anim_timeout"]

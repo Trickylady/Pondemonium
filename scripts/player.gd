@@ -32,12 +32,14 @@ func _init() -> void:
 	Manager.catfish = self
 
 func _ready() -> void:
-	position = (position - Manager.TILE_SIZE/2.0).snapped(Manager.TILE_SIZE) + Manager.TILE_SIZE/2.0
+	Manager.snap_to_grid(self)
 	init_pos = position
 	direction = Vector2.RIGHT
 	$RichTextLabel.hide()
 	if Manager.mode == Manager.Difficulty.HARD:
 		bubblets_remaining = Manager.bubblets_amount
+		if Manager.level.boss_level:
+			bubblets_remaining += 5
 
 func _physics_process(delta: float) -> void:
 	if is_dead:

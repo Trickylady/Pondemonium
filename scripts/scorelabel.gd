@@ -31,5 +31,5 @@ func go_to_bucket():
 	#tw.set_parallel()
 	tw.tween_property(self,"position", target_pos, duration_target)
 	tw.tween_property(self, "modulate:a", 0.0, 0.6)
-	tw.parallel().tween_property(Manager, "total_score", points_display, 0.4).as_relative()
+	tw.parallel().tween_property(Manager, "total_score", points_display, 0.0).as_relative()
 	tw.tween_callback(queue_free)

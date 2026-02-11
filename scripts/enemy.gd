@@ -20,7 +20,7 @@ func _init() -> void:
 	Manager.catfish.glue_picked_up.connect(start_glue)
 
 func _ready() -> void:
-	position = (position - Manager.TILE_SIZE/2.0).snapped(Manager.TILE_SIZE) + Manager.TILE_SIZE/2.0
+	Manager.snap_to_grid(self)
 	target_position = position
 	set_physics_process(false)
 	await get_tree().create_timer(1.0).timeout
@@ -61,15 +61,19 @@ func shoot() -> void:
 	if is_shooting: return
 	is_shooting = true
 	is_moving = false
+	
+	if direction.x != 0:
+		%Sprite.play(&"attackhor")
 	await get_tree().create_timer(0.1).timeout
+	
 	var bullet: frogspit = preload("res://scenes/frog_spit.tscn").instantiate()
 	bullet.speed = bullet_speed
 	bullet.position = position
 	bullet.direction = direction
 	Manager.level.bullets.add_child(bullet)
+	is_moving = true
 	await get_tree().create_timer(shoot_cooldown).timeout
 	is_shooting = false
-	is_moving = true
 
 func _process(_delta: float) -> void:
 	%Sprite.flip_h = direction == Vector2.LEFT
@@ -89,17 +93,14 @@ func die() -> void:
 	%SFXfrogdead.play()
 	%Sprite.play("dead")
 	
-	var point_label: ScoreLabel = preload("res://scenes/scorelabel.tscn").instantiate()
-	point_label.position = position
-	point_label.points_display = 200
-	point_label.target_pos = Manager.uigame.bucket.global_position
-	Manager.level.score_labels.add_child(point_label)
+	Manager.add_point_label(200, position)
 	
 	var spawn_pickup: bool = randf() < pickup_prob
 	if spawn_pickup:
-		var pickup: Pickup = preload("res://scenes/pickup.tscn").instantiate()
+		var pickup: Pickup = load("res://scenes/pickup.tscn").instantiate()
 		pickup.position = position
 		Manager.level.pickups.add_child.call_deferred(pickup)
+		pickup.pick_random()
 	
 	await %Sprite.animation_finished
 	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cooomx1feul6u"]
+[gd_scene load_steps=25 format=3 uid="uid://cooomx1feul6u"]
 
 [ext_resource type="Script" uid="uid://yw3gqboxt4vg" path="res://scripts/uiscript.gd" id="1_2wy4j"]
 [ext_resource type="Texture2D" uid="uid://btbr06xypbvck" path="res://images/game/lowerbar.png" id="1_qdej6"]
@@ -17,6 +17,16 @@
 [ext_resource type="PackedScene" uid="uid://du5f7bd1yfbem" path="res://scenes/nextlevel.tscn" id="16_bcq2c"]
 [ext_resource type="Theme" uid="uid://rc4laadkqcrj" path="res://themes/mainmenu.tres" id="16_vbeqw"]
 [ext_resource type="FontFile" uid="uid://bcjpinx7pcvy3" path="res://fonts/PirataOne-Regular.ttf" id="17_2r81g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vbeqw"]
+font = ExtResource("17_2r81g")
+font_size = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2bdhw"]
+bg_color = Color(0.71284646, 0.013259516, 0.14055109, 0.43137255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qni2n"]
+bg_color = Color(0.8235294, 0.6039216, 0.12156863, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pp7bi"]
 animations = [{
@@ -44,6 +54,34 @@ bg_color = Color(0.8235294, 0.6039216, 0.12156863, 1)
 [node name="uigame" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_2wy4j")
+
+[node name="boss_battle" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 826.0
+offset_top = 326.0
+offset_right = -920.0
+offset_bottom = 391.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="label_bruce" type="Label" parent="boss_battle"]
+layout_mode = 2
+text = "Bruce"
+label_settings = SubResource("LabelSettings_vbeqw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="boss_bar" type="ProgressBar" parent="boss_battle"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_2bdhw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qni2n")
+max_value = 1.0
+value = 0.4
+show_percentage = false
 
 [node name="overlays" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -227,6 +265,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = -46.0
+offset_bottom = 23.0
 grow_horizontal = 2
 theme = ExtResource("16_vbeqw")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -248,5 +287,6 @@ grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_vbeqw")
 theme_override_styles/fill = SubResource("StyleBoxFlat_2r81g")
 max_value = 1.0
+step = 0.001
 value = 0.4
 show_percentage = false

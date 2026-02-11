@@ -8,18 +8,23 @@ enum Type{
 	SHIELD
 }
 
-var type: Type
+var type: Type: set = set_type
 var despawn_duration: float = 10
 var duration_glue: float = 15
-var duration_shield: float = 45
+var duration_shield: float = 30
 
-func _ready() -> void:
+func pick_random() -> void:
 	type = [
 		Type.HEART,
 		Type.GLUE,
 		Type.REVERSE,
 		Type.SHIELD
 	].pick_random()
+
+func set_type(value: Type):
+	type = value
+	if not is_node_ready():
+		await ready
 	match type:
 		Type.HEART: %sprite_boost.play("hearts")
 		Type.GLUE: %sprite_boost.play("glues")
@@ -41,9 +46,5 @@ func despawn():
 
 func _on_body_entered(body: Player) -> void:
 	body.pick_up(self)
-	var point_label: ScoreLabel = preload("res://scenes/scorelabel.tscn").instantiate()
-	point_label.position = position
-	point_label.points_display = 500
-	point_label.target_pos = Manager.uigame.bucket.global_position
-	Manager.level.score_labels.add_child(point_label)
+	Manager.add_point_label(500, position)
 	queue_free()

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc2kgiu3wun86"]
+
+[ext_resource type="Script" uid="uid://bfdc85eclv2nh" path="res://scripts/pike_spawn.gd" id="1_h4qip"]
+
+[node name="pike_spawn" type="Marker2D"]
+script = ExtResource("1_h4qip")
+
+[node name="ray" type="RayCast2D" parent="."]

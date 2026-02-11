@@ -23,6 +23,8 @@ func _on_body_entered(body: Node2D) -> void:
 		body.destroy()
 	elif body is TileBubble:
 		body.destroy(true)
+	elif body is FrogBoss:
+		body.take_damage()
 	explode()
 
 func explode():

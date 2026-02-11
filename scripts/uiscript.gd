@@ -18,6 +18,14 @@ func _ready() -> void:
 	Manager.catfish.last_bubblet_started.connect(start_last_bubble)
 	Manager.catfish.pick_up_collected.connect(pick_up_collected)
 	stop_last_bubble()
+	if not Manager.level.is_node_ready():
+		await Manager.level.ready
+	%boss_battle.visible = Manager.level.boss_level
+	if Manager.level.boss_level:
+		Manager.frog_boss.health_changed.connect(update_boss_health)
+		%boss_bar.max_value = Manager.frog_boss.health
+		%boss_bar.value = Manager.frog_boss.health
+		update_boss_health()
 
 func update_all():
 	update_score()
@@ -58,6 +66,9 @@ func update_level():
 	var tot: int = Manager.levels.size()
 	var cur: int = Manager.current_level
 	%levelnum.text = "Level %d/%d" % [cur, tot]
+
+func update_boss_health():
+	%boss_bar.value = Manager.frog_boss.health
 
 func show_deathscreen():
 	%Died.show()

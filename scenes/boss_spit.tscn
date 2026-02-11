@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlk437qn6ko57"]
+
+[ext_resource type="Script" uid="uid://d2c7262hif032" path="res://scripts/boss_spit.gd" id="1_yo8g8"]
+[ext_resource type="Texture2D" uid="uid://cb78fqa6fy5br" path="res://images/game/frog_boss_spit.png" id="2_yo8g8"]
+[ext_resource type="AudioStream" uid="uid://dx224jw2wbm3h" path="res://sound/sfx/enemy_spit.mp3" id="3_bye54"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmk6o"]
+radius = 8.062258
+
+[node name="boss_spit" type="Area2D"]
+collision_layer = 32
+collision_mask = 65
+script = ExtResource("1_yo8g8")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_yo8g8")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pmk6o")
+
+[node name="SFXspit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bye54")
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

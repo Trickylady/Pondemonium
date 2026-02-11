@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://m4hbxwai8jnl"]
+[gd_scene load_steps=6 format=3 uid="uid://m4hbxwai8jnl"]
 
 [ext_resource type="Script" uid="uid://bfuocuf32jle6" path="res://scripts/pike.gd" id="1_lonbi"]
 [ext_resource type="Texture2D" uid="uid://cdy60jvuk3bls" path="res://images/game/pike_1.png" id="2_wqmra"]
@@ -18,10 +18,29 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Pike" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wqmra"]
+radius = 19.0
+height = 194.0
+
+[node name="Pike" type="Area2D"]
+collision_layer = 32
 script = ExtResource("1_lonbi")
 
 [node name="pike" type="AnimatedSprite2D" parent="."]
+rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_uryia")
 animation = &"swim"
 frame_progress = 0.16289975
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(18, 7.86805e-07)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_wqmra")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
+rect = Rect2(-126, -46, 252, 92)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

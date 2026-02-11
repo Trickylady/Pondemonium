@@ -5,19 +5,20 @@ const TILE_SIZE = Vector2(80,80)
 enum Difficulty{NORMAL, HARD}
 
 const levels = [
-	#"res://scenes/level_test.tscn", 
-	#"res://scenes/level_1.tscn", 
-	#"res://scenes/level_2.tscn", 
-	#"res://scenes/level_3.tscn", 
-	#"res://scenes/level_4.tscn", 
-	#"res://scenes/level_5.tscn",
-	"res://scenes/level_6/tscn"
+	#"res://scenes/level_test.tscn",
+	"res://scenes/level_1.tscn",
+	"res://scenes/level_2.tscn",
+	"res://scenes/level_3.tscn",
+	"res://scenes/level_4.tscn",
+	"res://scenes/level_5.tscn",
+	"res://scenes/level_6.tscn",
 ]
 signal lives_changed
 signal score_changed
 
 var level: Level
 var catfish: Player
+var frog_boss: FrogBoss
 var uigame: UI
 
 var mode: Difficulty
@@ -61,3 +62,17 @@ func reset_stats():
 		bubblets_amount = 25
 	total_score = 0
 	get_tree().paused = false
+
+func snap_to_grid(node: Node2D):
+	var pos: Vector2 = node.global_position
+	pos = (pos - Manager.TILE_SIZE/2.0)
+	pos = pos.snapped(Manager.TILE_SIZE)
+	pos += Manager.TILE_SIZE/2.0
+	node.global_position = pos
+
+func add_point_label(points: int, at_pos: Vector2):
+	var point_label: ScoreLabel = preload("res://scenes/scorelabel.tscn").instantiate()
+	point_label.position = at_pos
+	point_label.points_display = points
+	point_label.target_pos = Manager.uigame.bucket.global_position
+	level.score_labels.add_child(point_label)
