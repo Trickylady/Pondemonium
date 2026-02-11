@@ -44,11 +44,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -219.5
-offset_right = 219.5
-offset_bottom = 81.0
+offset_left = -219.0
+offset_top = 32.0
+offset_right = 220.0
+offset_bottom = 139.0
 grow_horizontal = 2
 theme = ExtResource("4_5vxan")
+theme_override_font_sizes/normal_font_size = 78
 text = "WINNER!"
 horizontal_alignment = 1
 
@@ -66,7 +68,7 @@ offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_5vxan")
-text = "Congradulation, you did it!
+text = "Congratulations, you did it!
 Score:"
 horizontal_alignment = 1
 
