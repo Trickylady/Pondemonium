@@ -162,4 +162,5 @@ func _on_shield_area_body_entered(body: Enemy) -> void:
 
 
 func _on_last_bubblet_timer_timeout() -> void:
+	is_shielded = false
 	take_damage()
