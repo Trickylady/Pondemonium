@@ -104,10 +104,10 @@ func can_shoot() -> bool:
 func take_damage():
 	if is_shielded:
 		return
-	Manager.lives -= 1
 	is_respawning = true
 	is_dead = true
 	moving = false
+	Manager.lives -= 1
 	$AnimationPlayer.play("die")
 	$SFXdieplayer.play()
 	await $AnimationPlayer.animation_finished
@@ -159,7 +159,6 @@ func stop_shield():
 func _on_shield_area_body_entered(body: Enemy) -> void:
 	if is_shielded:
 		body.destroy()
-
 
 func _on_last_bubblet_timer_timeout() -> void:
 	is_shielded = false

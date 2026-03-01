@@ -17,6 +17,7 @@ var tot_frog_dead: int = 0:
 	set(value):
 		tot_frog_dead = value
 		tot_frog_dead_changed.emit()
+var is_won: bool = false
 
 signal tot_frog_dead_changed
 signal level_won
@@ -84,6 +85,7 @@ func get_frog_count() -> int:
 func enemy_killed():
 	tot_frog_dead += 1
 	if tot_frog_dead >= total_enemies:
+		is_won = true
 		level_won.emit()
 		return
 	if tot_frog_dead % spawn_count == 0:

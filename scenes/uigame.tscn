@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cooomx1feul6u"]
+[gd_scene load_steps=30 format=3 uid="uid://cooomx1feul6u"]
 
 [ext_resource type="Script" uid="uid://yw3gqboxt4vg" path="res://scripts/uiscript.gd" id="1_2wy4j"]
 [ext_resource type="Texture2D" uid="uid://btbr06xypbvck" path="res://images/game/lowerbar.png" id="1_qdej6"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://du5f7bd1yfbem" path="res://scenes/nextlevel.tscn" id="16_bcq2c"]
 [ext_resource type="Theme" uid="uid://rc4laadkqcrj" path="res://themes/mainmenu.tres" id="16_vbeqw"]
 [ext_resource type="FontFile" uid="uid://bcjpinx7pcvy3" path="res://fonts/PirataOne-Regular.ttf" id="17_2r81g"]
+[ext_resource type="Texture2D" uid="uid://dkkuf3g8s8uwa" path="res://images/game/boost_life_big.png" id="18_2r81g"]
+[ext_resource type="AudioStream" uid="uid://c3nvsdcg2ssdi" path="res://sound/sfx/boost_activated.mp3" id="19_jfqf8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vbeqw"]
 font = ExtResource("17_2r81g")
@@ -50,6 +52,115 @@ bg_color = Color(0, 0, 0, 0.43137255)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2r81g"]
 bg_color = Color(0.8235294, 0.6039216, 0.12156863, 1)
+
+[sub_resource type="Animation" id="Animation_jfqf8"]
+resource_name = "extralife"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoostLifeBig:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(957, 417), Vector2(957, 417), Vector2(52.00006, 1015)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BoostLifeBig:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BoostLifeBig:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BoostLifeBig:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.01, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2bdhw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoostLifeBig:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(957, 417)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BoostLifeBig:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BoostLifeBig:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BoostLifeBig:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qni2n"]
+_data = {
+&"RESET": SubResource("Animation_2bdhw"),
+&"extralife": SubResource("Animation_jfqf8")
+}
 
 [node name="uigame" type="CanvasLayer"]
 process_mode = 3
@@ -290,3 +401,18 @@ max_value = 1.0
 step = 0.001
 value = 0.4
 show_percentage = false
+
+[node name="APpop_ups" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_qni2n")
+}
+
+[node name="BoostLifeBig" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(957, 417)
+texture = ExtResource("18_2r81g")
+
+[node name="extr" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_jfqf8")
+bus = &"SFX"

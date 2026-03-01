@@ -71,7 +71,8 @@ func update_boss_health():
 	%boss_bar.value = Manager.frog_boss.health
 
 func show_deathscreen():
-	%Died.show()
+	if not Manager.level.is_won:
+		%Died.show()
 
 func show_next_level():
 	%Nextlevel.show()
@@ -81,6 +82,11 @@ func show_win_screen():
 
 func on_level_won():
 	await get_tree().create_timer(3).timeout
+	if Manager.level.is_won:
+		%APpop_ups.play("extralife")
+		$extr.play()
+		await %APpop_ups.animation_finished
+		Manager.lives += 1
 	if Manager.current_level == Manager.levels.size():
 		show_win_screen()
 	else:
@@ -121,3 +127,12 @@ func blink_sprite(sprite: Sprite2D, duration: float = 0):
 	tw.tween_property(sprite, "modulate:a", 1, 0.3)
 	tw.tween_property(sprite, "modulate:a", 0.3, 0.3)
 	await tw.finished
+
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventKey:
+		#if event.is_released():
+			#return
+		#if event.keycode == KEY_A:
+			#Manager.level.is_won = true
+			#Manager.level.level_won.emit()
+			#Manager.catfish.take_damage()
